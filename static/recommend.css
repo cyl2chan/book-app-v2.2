@@ -1,0 +1,17 @@
+.recommendations {
+    background-color: #026faa;
+}
+
+#content-left {
+    padding-left: 50px;
+    padding-right: 50px;;
+}
+
+
+#bookFeedPlaceHolder {
+    font-size: 15px;
+}
+
+#bookFeedPlaceHolder a {
+    font-size: 20px;
+}

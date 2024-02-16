@@ -1,0 +1,14 @@
+#Create Virtual Environment
+- python3 -m venv venv
+- # Active Virtual Environment
+- so - source venv/bin/activate
+#check the packes 
+- pip3 freeze
+#Install Requirements.txt 
+- pip3 install -r requirements.txt
+(now requirements.txt match the one we are having)
+
+#Test our application
+python3 entry.py 
+
+

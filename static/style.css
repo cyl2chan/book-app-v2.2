@@ -1,0 +1,504 @@
+:root {
+    font-family: sans-serif;   
+
+    --transition-speed: 1s;
+    --transition-notDrawer: margin-left 0.4s ease-in;
+    --transition-drawer: width 0.4s ease-in;
+    --lightblue: #aae1ff;
+    --blue-menu: #30a6e6;
+}
+
+* {
+    font-family: arial; 
+}
+
+body {
+    font-family: roboto;
+
+    display: grid;
+    grid-template-columns: auto 1fr;
+    column-gap: 10px;
+}
+
+/* Dropdown styles */
+
+.dropdown {
+    max-width: 9rem;
+    margin: 0;
+    position: relative;
+    width: 100%;
+}
+
+.dropdown-btn {
+    /*background: #1d1f24;*/
+    font-size: 22px;
+    font-weight: bold;
+    width: 100%;
+    height: 12px;
+    border: none;
+    background-color: white;
+    /*color: #fff;*/
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.7em 0.5em;
+    cursor: pointer;
+}
+
+.arrow {
+    
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+    border-top: 6px solid black;
+    
+    transition: tranform ease-in-out 0.3s;
+}
+
+.dropdown-content {
+    list-style: none;
+    /*border: 10px solid black;*/
+    border-color: black;
+    background-color: white;
+    width: 5px;
+    position: absolute;
+    top: 3.2em;
+    width: 100%;
+    visibility: hidden;
+    /* overflow: hidden; */
+    transform: translateY(-1em);
+    transition: transform ease 0.3s;
+    /*
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    */
+}
+
+.dropdown input[type="checkbox"]:checked ~ .dropdown-content {
+    visibility: visible;
+    transform: translateY(0);
+}
+
+.dropdown-content li {
+    background: white;
+    /*border-radius: 0.5em;*/
+}
+
+.dropdown input[type="checkbox"]:checked + label > .arrow {
+    transform: rotate(180deg);
+}
+
+
+
+.dropdown input[type="checkbox"] {
+    opacity: 0;
+    position: absolute;
+}
+
+/*
+input[type="checkbox"]:focus + label {
+    box-shadow: 0 0 20px rgb(83, 83, 83);
+  }
+
+.dropdown-content li:hover {
+    background: #1d1f24;
+  }
+*/  
+
+
+.dropdown-content li a {
+    display: block;
+    padding: 0;
+    color: black;
+    font-size: 22px;
+    margin: 0;
+    text-decoration: none;
+}
+
+/*menu styles*/
+#menu {
+    background-color: var(--blue-menu);
+    font-family: roboto;
+
+    /*
+    commented padding-left:
+    Padding will now be controlled by menuItems not the menu.
+    This helps in making the selected menu item deep blue
+    */
+    /*padding-left: 1.25rem;*/
+    
+    width: 5rem;
+    min-width: 3rem;
+    transition: var(--transition-drawer);
+
+    display: flex;
+    flex-direction: column;
+    flex-shrink: 1;
+}
+
+#menu:hover {
+    width: 20rem;
+
+    /*
+    commented padding-right: padding now controlled by menuItems  
+    */
+    /*padding-right: 1.25rem;*/
+}
+
+#menu:hover .menuItem {
+    background-color: ;
+}
+
+/*
+#menu:hover ~ #body-right {
+    margin-left: calc(clamp(210px, 22vw, 325px) - 5rem)
+}
+*/
+
+.dashboard {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+
+    color: white;
+    gap: 2.188rem;
+
+    /*added padding to center it*/
+    padding-left: 1.3rem;
+    padding-right: 1.25rem;
+}
+
+.menuItem {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+
+    gap: 3.438rem;
+    color: white;
+
+    /*changed padding of menu items to center them*/ 
+    padding-left: 1.5rem;
+    padding-right: 1.25rem;
+}
+
+.menuItem > img {
+    filter: brightness(0) saturate(100%) invert(100%) sepia(0%) saturate(0%) hue-rotate(93deg) brightness(103%) contrast(103%);
+    width: 30px;
+}
+
+.dashboard > img {
+    filter: brightness(0) saturate(100%) invert(100%) sepia(0%) saturate(0%) hue-rotate(93deg) brightness(103%) contrast(103%);
+    width: 50px;
+}
+
+
+.cardIcons {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-end;
+    justify-content: flex-end;
+    gap: 0.625rem;
+    position: absolute;
+    bottom: 10px;
+    right: 20px;
+    
+}
+
+.cardIcons > img {
+    height: 25px;
+}
+
+.blank {
+
+}
+
+#body-right {
+    display: incline-grid;
+    grid-template-rows: 17vh 83vh;
+    grid-template-areas:
+        "header"
+        "content"
+    transition: var(--transition-notDrawer);
+}
+
+
+#header {
+    grid-area: header;
+
+    display: grid;
+
+    padding: 20px 30px 0px 30px;
+
+
+}
+
+#top {
+    height: 50px;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+
+
+}
+
+#topLeft {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+
+    gap: 10px;
+    height: 35px;
+}
+
+#seachIcon {
+    width: 25px;
+}
+
+#searchBar {
+    border-width: 0;
+    border-radius: 20px;
+    background-color: #E2E8F0;
+    width: 40vw;
+    font-size: 20px;
+}
+
+#topRight {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end; 
+    
+
+    gap: 40px;
+    height: 35px;
+}
+
+#topRight > p {
+    margin: 0px;
+    padding: 8px;
+
+    font-size: 20px;
+    font-weight: bold;
+}
+
+#bellRing {
+    width: 25px;
+}
+
+#tab {
+    display: grid;
+    grid-template-columns: 0.7fr 7fr 5fr;
+    align-items: center;
+}
+
+#tab > img {
+    width: 80px;
+    padding: 30px 5px 20px 0px;
+}
+
+#greetings {
+    display: grid;
+    grip-template-rows: 1fr 2fr;
+    justify-content: flex-start;
+    align-items: center;
+    margin: 0px;
+    padding-top: 20px;
+}
+
+#hi {
+    margin: 5px;
+}
+
+#leon-chan {
+    font-size: 30px;
+    font-weight: bold;
+    margin: 5px;
+    margin-top: 5px;
+}
+
+#round-btn-gp {
+    display: grid;
+    align-items: center;
+    justify-content: center; /*also need to adjust 'position' and 'right' in .round-btn*/
+
+    padding-left: 250px;
+    padding-right: 0px;
+}
+
+.round-btn {
+    background-color: var(--blue-menu);
+    color: #FFFFFF;
+    width: 120px;
+    height: 45px;
+
+    font-size: 20px; 
+    line-height: 16px; 
+    padding: 6px; 
+    border-radius: 30px; 
+    border: #30a6e6;
+
+    font-weight: bold; 
+    text-transform: none; 
+
+    position: absolute;
+    right: 120px;
+}
+
+#main-body {
+
+}
+
+#content {
+    background-color: #EFF3F6;
+    
+    grid-area: content;
+    display: grid;
+    grid-template-columns: 1fr 20vw;
+    grid-column-gap: 20px;
+    
+    transition: var(--transition-notDrawer);
+}
+
+#content-left {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 2rem;
+    padding-top: 10px;
+    padding-left: 15px;
+    margin: 0px;
+}
+
+#your-proj {
+    margin: 20px;
+}
+
+.books {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(380px, 1fr));
+    grid-auto-rows: 250px;
+}
+
+.card {
+    background-color: var(--lightblue);
+    margin-left: 20px;
+    margin-bottom: 20px; 
+    /*border-left: 10px solid rgb(252, 164, 0);*/
+    padding: 20px;
+    border-radius: 5px;
+
+    box-shadow: 5px 5px 5px 5px #CFD5DC;
+
+    display: grid;
+    grid-template-rows: 2fr fr 1fr 1fr;
+}
+/*
+.books .icons {
+    margin-top: auto;
+    align-self: flex-end;
+    display: flex;
+    justify-content: flex-end;
+    gap: 1.4rem;
+    width: 20px;
+    align-items: center;
+    padding-bottom: 5px;
+    padding-right: 5px;
+}
+*/
+#content-right {
+    display: grid;
+    grid-template-rows: repeat(2, 1fr);
+
+    position: relative;
+}
+
+.show-hide {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+
+    display: flex;
+    flex-direction: row;
+
+}
+
+.show-hide a img {
+    height: 25px;;
+}
+
+
+#news {
+
+}
+
+#announcements {
+
+}
+
+#ann-grid {
+    background-color: var(--lightblue);
+    margin-right: 20px;
+
+    -webkit-box-shadow: 5px 5px 5px 5px #CFD5DC; 
+    box-shadow: 5px 5px 5px 5px #CFD5DC;
+}
+
+.ann-item {
+    border: grey;
+    padding: 20px;
+    padding-bottom: 10px;
+}
+
+.ann-item > h2 {
+    font-size: 17px;
+}
+
+#trending {
+
+}
+
+#trending-text {
+    margin-top: 30px;
+    margin-bottom: 10px;
+}
+
+#t-grid {
+    background-color: var(--lightblue);
+    margin-right: 20px;  
+    padding: 20px;
+    padding-top: 0px;
+    padding-bottom: 0px; 
+    
+    -webkit-box-shadow: 5px 5px 5px 5px #CFD5DC; 
+    box-shadow: 5px 5px 5px 5px #CFD5DC;
+}
+
+#trend-item {
+
+}
+
+.t-item {
+    display: grid;
+    grid-template-columns: 1fr 2.5fr;
+    align-items: center;
+}
+
+.t-item > img {
+    width: 60px;
+}
+
+.t-item-user {
+    margin-top: 30px;
+    margin-bottom: 2px;
+}
+
+.t-item-description {
+    color: grey;
+    margin-top: 3px;
+    margin-bottom: 30px;
+}

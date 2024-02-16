@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../static/blog.css">
+    <title>Document</title>
+</head>
+<body>
+
+    <div class="modal-update">
+        <form class='form' action=/update method="POST">
+            <h1>Edit Book Review</h1>
+            <div class="form-header">
+                <h3>Review:</h3>
+                <input type="text" name='book_title' placeholder="Enter book title" 
+                    value="{{entry.book_title}}"> 
+            </div>
+            <textarea type="text" name='content' placeholder="Any reviews on a book?" 
+                >{{entry.content}}</textarea>
+            
+            <div>
+                id=<input type="text" name='entry_id' id="update_entry_id_input" placeholder="Enter book title" 
+                value="{{entry.entry_id}}">
+            </div>
+            <button type='submit' value="Update" id='submit-btn'>Update</button>
+        </form>
+    </div>
+    
+</body>
+</html>

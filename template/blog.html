@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../static/style.css">
+    <link rel="stylesheet" href="../static/blog.css">
+    <link rel="icon" type="image/x-icon" href="../../icons/post.svg">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <title>Blog</title>
+</head>
+<body>
+
+    <div id="menu">
+        <div class="dashboard">
+            <img src="{{ url_for('static', filename='../static/icons/view-dashboard.svg') }}">
+            <h1>Dashbboard</h1>
+        </div>
+        <div class="blank"></div>
+        <a class="menuItem" href="/library">
+            <img src="../static/icons/book-open-page-variant.svg">
+            <h2>Library</h2>
+        </a>
+        <a class="menuItem challenge" href="/reading_challenge">
+            <img src="../static/icons/stairs-up.svg">
+            <h2>Challenge</h2>
+        </a>
+        <a class="menuItem blog" href="/blog">
+            <img src="../static/icons/post.svg">
+            <h2>Blog</h2>
+        </a>
+        <a class="menuItem" href="/recommend">
+            <img src="../static/icons/newspaper.svg">
+            <h2>Recommend</h2>
+        </a>
+    </div>
+    
+    <div id="body-right">
+        <div id="header">
+            <div id="top">
+                <div id="topLeft">
+                    <img src="../static/icons/magnify.svg" id="seachIcon">
+                    <input type="text" id="searchBar">
+                </div>
+                <div id="topRight">
+                    <img src="../static/icons/bell-ring-outline.svg" id="bellRing">
+                    <img src="../static/icons/leon.png">
+                    <div class="dropdown">
+                        <input type="checkbox" id="dropdown"/>
+                            <label for="dropdown" class="dropdown-btn">
+                                <span><p>Leon Chan</p></span>
+                                <span class="arrow"></span>
+                            </label>
+                            <ul class="dropdown-content" role="menu">
+                                <li><a href="/logout">Logout</a></li>
+                            </ul>
+                    </div>
+                </div>
+            </div>
+            <div id="tab">
+                <img src="../static/icons/leon.png">
+                <div id="greetings">
+                    <p id="hi">&nbsp; Hi there,</p>
+                    <p id="leon-chan">Leon Chan (@leon76)</p>
+                </div>
+                <div id="round-btn-gp">
+
+                    <!--<button class="round-btn">Share</button>-->
+                </div>
+            </div>
+        </div>   
+        <div id="content">
+            <div id="content-left">
+                <div class="container">
+                    <form class='form' action=/add method='POST'>
+                        <h1>Add Book Review</h1>
+                        <div class="form-header">
+                            <h3>Review:</h3>
+                            <input type="text" name='book_title' placeholder="Enter book title">
+                        </div>
+                        <textarea type="text" name='content' placeholder='Any reviews on a book?'></textarea>
+                        <button type='submit' id='submit-btn'>Add</button>
+                    </form>
+
+                    <!--loop-->
+                    <dialog class="modal-update" style="display: none">
+                        <form class='form' action=/update method='POST'>
+                            <h1>Edit Book Review</h1>
+                            <div class="form-header">
+                                <h3>Review:</h3>
+                                <input type="text" name='book_title' placeholder="Enter book title" 
+                                    value="{{entry.book_title}}"> 
+                                    <input type="text" name='book_title' placeholder="Enter book title" 
+                                    id='modal_book_title'>
+                            </div>
+                            <!--<textarea type="text" name='content' placeholder='Any reviews on a book?'>{{entry.content}}</textarea> -->
+                            <textarea type="text" name='content' placeholder='Any reviews on a book?' id='modal_entry_content'></textarea>
+                            <div>
+                                <!--id=<input type="text" name='entry_id' id="update_entry_id_input" placeholder="Enter book title" 
+                                value="{{entry.entry_id}}"> -->
+                                id=<input type="text" name='entry_id' id="update_entry_id_input" placeholder="Enter book title">
+                            </div>
+                            <div class="modal-btn">
+                                <button id='cancel-btn' onclick="cancel_modal()">Cancel</button>
+                                <button type='submit' value="submit" id='submit-btn' href="/update">Update</button>
+                            </div>
+                        </form>
+                    </dialog>
+                    
+
+                    <h1>Book Reviews</h1>
+                      
+                    <div class="empty"></div>
+
+                    {% for entry_obj in entry_list %}
+
+                    <div class="entry">
+                        <div class="entry-icons">
+                            
+                            <a href="update-modal/{{entry_obj.entry_id}}">
+                            <!--<a onclick="edit_entry()"> -->
+                                <img src="../static/icons/pencil.svg">
+                            </a>
+                            
+                            <a href="delete/{{entry_obj.entry_id}}"><h3 id="X">X</h3></a>
+                        </div>
+                        <div class="entry-header">
+                            <h3>Review: {{ entry_obj.book_title }}</h3>
+                            <p class='date'>{{ entry_obj.date }}</p>
+                        </div>
+                        <p class="entry-content">{{ entry_obj.content }}</p>
+                        <!--<p class="entry-id">{{ entry_obj.entry_id }}</p> -->
+                    </div>
+
+
+                    {% endfor %}
+
+                </div>
+            </div>
+
+            <div id="content-right">
+                
+                    <div class="show-hide">
+                        <a id="showBtn" style="display: none"><img src="../static/icons/eye.svg"></a>
+                        <a id="hideBtn"><img src="../static/icons/eye-off.svg"></a>
+                    </div>
+                    <div id="announcements" class="hide-show-right">
+                        <h2>Announcements</h2>
+                        <div id="ann-grid">
+                            <div class="ann-item">
+                                <h2>Site Maintenance</h2>
+                                <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor...</p>
+                            </div>
+                            <div class="ann-item">
+                                <h2>Canada Day</h2>
+                                <p>Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes...</p>
+                            </div>
+                            <div class="ann-item">
+                                <h2>Updated Privacy Policy</h2>
+                                <p>nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem...</p>
+                            </div>
+                        </div>
+                    </div>
+                
+                    <div id="trending" class="hide-show-right">
+                        <h2 id="trending-text">Trending</h2>
+                        <div id="t-grid">
+                            <div class="t-item">
+                                <img src="../static/icons/dj.png">
+                                <div>
+                                    <h4 class="t-item-user">@djbrian</h4>
+                                    <p class="t-item-description">Music Project</p>
+                                </div>
+                            </div>
+                            <div class="t-item">
+                                <img  src="../static/icons/frontend.png">
+                                <div>
+                                    <h4 class="t-item-user">@Alex</h4>
+                                    <p class="t-item-description">Javascript Mentor</p>
+                                </div>
+                            </div>
+                            <div class="t-item">
+                                <img  src="../static/icons/backend.png">
+                                <div>
+                                    <h4 class="t-item-user">@christopher</h4>
+                                    <p class="t-item-description">Backend Expert</p>
+                                </div>
+                            </div>
+                            <div class="t-item">
+                                <img  src="../static/icons/messi.png">
+                                <div>
+                                    <h4 class="t-item-user">@messi</h4>
+                                    <p class="t-item-description">GOAT builder</p>
+                                </div>
+                            </div>
+                            
+                        </div>
+                            
+                    </div>
+                
+            </div>
+        </div>
+        
+        
+    
+    </div>
+
+    <script>
+        const modal = document.querySelector('.modal-update');
+        const cancel_btn = modal.querySelector('#cancel-btn');
+        /*
+        //get the entry_id's value of the entry first with DOM or JQuery
+        //then add the entry_id to the end of url
+        var entryIdEle = document.querySelector('.entry-id');
+        //var entryId = 
+
+        function edit_entry() {
+            //var pyPath = "../entry.py";
+            //subprocess.run(["python", pythonScriptPath]);
+            $.ajax({
+                type: "GET",
+                
+                //url: "http://localhost:5000/update-modal/" + 
+                url: "http://localhost:5000/update-modal/<ent_id>",
+                //url: 'http://localhost:5000/update-modal/{{entry.entry_id}}', 
+                //url: "/update-modal/<ent_id>",
+                data: {
+                    entry_id: entry_id,
+                    book_title: book_title,
+                    content: content
+                },
+                success: function (data) {
+                    console.log(data)
+            
+                    $("#modal_book_title").text(entry_id);
+                    $("#modal_entry_content").text(book_title);
+                    $("#update_entry_id_input").text(content);
+                }, 
+
+
+            })
+            modal.style.display = 'block';
+        }
+        
+
+        function cancel_modal() {
+            modal.style.display = 'none';
+        }
+        */
+        $(document).ready(function(){
+            $("#hideBtn").click(function(){
+                $(".hide-show-right").hide();
+                $("#hideBtn").hide();
+                $("#showBtn").show();
+            });
+
+            $("#showBtn").click(function(){
+                $(".hide-show-right").show();
+                $("#showBtn").hide();
+                $("#hideBtn").show();
+            });
+        })
+
+
+        /*    
+        windows.addEventListener("click", (e) => {
+            
+                modal.style.display = 'none';
+            
+        })
+        */
+
+    </script>
+</body>
+</html>

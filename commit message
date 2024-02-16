@@ -1,0 +1,91 @@
+Oct 31
+
+still doing def list_entries()
+next: do def add_entry()
+
+
+Nov 10, 2023
+
+V modal pop up
+V #cancel-btn to close modal
+
+now: working on problem with "entry_id not found"
+next: work on "entry is undefined"
+
+others: 
+- delete
+- post are in the order of date
+
+
+Nov 13, 2023
+- V delete
+- V working on problem with "entry_id not found"
+
+- work on "entry is undefined" with modal 
+- post are in the order of date
+
+Nov 27, 2023
+- V solved problem on valueError of "Opportunity" inside int()
+    - problem was: "name" was wrong inside input field of "entry.book-title". Wrongly had id as "entry_id"
+    - how did I solve problem: debug by printing below:
+        - print(entries)
+        - print(update_entry_id)
+        - print(update_book_title)
+        - print(update_date)
+        - print(update_content)
+    - found out 
+        - print(entries) not successful
+        - print(update_entry_id) gives me a book title
+        - print(update_book_title) was 'none'
+
+Nov 28, 2023
+
+- blog-modal.py + blog-modal.py working
+- entry.py + blog-modal.py working
+- entry.py + blog-modal.py not working
+- entry.py has no problem, blog.html has problems
+
+Dec 6, 2023
+
+- make JS function call Python function for the update form
+
+
+Dec 7, 2023
+
+goal: make modal displaying correct info of corresponding entry
+
+XXX method 1:
+- call Python function/script in edit_entry()
+
+XXX method 2:
+- add onclick for edit_entry() and action for python function in <a>
+    - not working
+
+method 3:
+- use Ajax to call Python function and display entry info in modal
+    - in progress
+
+method 4:
+- add python action in <a>, and make modal pop up also in py function
+
+
+use method 3
+
+
+Dec 9, 2023
+
+use method 3
+
+plan: find entry_id with ajax, then use entry _id to find entry in database to update it
+
+
+
+
+
+
+
+
+
+
+
+

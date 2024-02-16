@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../static/style.css">
+    <link rel="stylesheet" href="../static/library.css">
+    <link rel="icon" type="image/x-icon" href="../static/icons/home.svg">
+    <title>Home</title>
+</head>
+<body>
+
+    <div id="menu">
+        <div class="dashboard">
+            <img src="../static/icons/view-dashboard.svg">
+            <h1>Dashbboard</h1>
+        </div>
+        <div class="blank"></div>
+        <a class="menuItem library" href="/library">
+            <img src="../static/icons/book-open-page-variant.svg">
+            <h2>Library</h2>
+        </a>
+        <a class="menuItem" href="/reading_challenge">
+            <img src="../static/icons/stairs-up.svg">
+            <h2>Challenge</h2>
+        </a>
+        <a class="menuItem" href="/blog">
+            <img src="../static/icons/post.svg">
+            <h2>Blog</h2>
+        </a>
+        <a class="menuItem" href="/recommend">
+            <img src="../static/icons/newspaper.svg">
+            <h2>Recommend</h2>
+        </a>
+
+    </div>
+    
+    <div id="body-right">
+        <div id="header">
+            <div id="top">
+                <div id="topLeft">
+                    <img src="../static/icons/magnify.svg" id="seachIcon">
+                    <input type="text" id="searchBar">
+                </div>
+                <div id="topRight">
+                    <img src="../static/icons/bell-ring-outline.svg" id="bellRing">
+                    <img src="../static/icons/leon.png">
+                    <div class="dropdown">
+                        <input type="checkbox" id="dropdown"/>
+                            <label for="dropdown" class="dropdown-btn">
+                                <span><p>Leon Chan</p></span>
+                                <span class="arrow"></span>
+                            </label>
+                            <ul class="dropdown-content" role="menu">
+                                <li><a href="/logout">Logout</a></li>
+                            </ul>
+                    </div>
+                </div>
+            </div>
+            <div id="tab">
+                <img src="../static/icons/leon.png">
+                <div id="greetings">
+                    <p id="hi">&nbsp; Hi there,</p>
+                    <p id="leon-chan">Leon Chan (@leon76)</p>
+                </div>
+                <div id="round-btn-gp">
+                    <button class="round-btn add-book">+ Book</button>
+                    <!--<button class="round-btn">Upload</button>
+                    <button class="round-btn">Share</button>-->
+                </div>
+            </div>
+        </div>   
+        <div id="content">
+            <div id="content-left">
+                
+                <h2 id="your-proj">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Your Books</h2>
+                <div class="books">
+                    
+
+                </div>
+                
+                <div class="modal" id="modal">
+                    <div class="modal-content">
+                        <span class="close">X</span>
+                        <div class="modal-form">
+                            <h1 class="form-title">Add Book</h1>
+                            <form class="add-book-form">
+                                <div class="modal-input-field title">
+                                    <label for="book-title">Title:&nbsp;</label>
+                                    <input
+                                        type="text"
+                                        name="book-title"
+                                        id="book-title"
+                                        class="modal-form-input"
+                                    />
+                                </div>
+                                <div class="modal-input-field author">
+                                    <label for="book-author">Author:</label>
+                                    <input
+                                        type="text"
+                                        name="book-author"
+                                        id="book-author"
+                                        class="modal-form-input"
+                                    />
+                                </div>
+                                <div class="modal-input-field pages">
+                                    <label for="book-pages">Pages:</label>
+                                    <input
+                                        type="number"
+                                        min="0"
+                                        name="book-pages"
+                                        id="book-pages"
+                                        class="modal-form-input"
+                                    />
+                                </div>
+                                <div class="modal-input-field read">
+                                    <span class="modal-read">Read?</span>
+                                    <label class="container">
+                                        <input
+                                            type="checkbox"
+                                            name="book-read"
+                                            id="book-read"
+                                            class="checkmark"
+                                        />
+                                    </label>
+                                </div>
+                                <div class="submit-modal-form add-btn">
+                                    <button type="submit" class="btn form-add-button">Add</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="content-right">
+                <!--
+                <div class="show-hide">
+                    <a id="showBtn" style="display: none"><img src="../static/icons/eye.svg"></a>
+                    <a id="hideBtn"><img src="../static/icons/eye-off.svg"></a>
+                </div>
+                -->
+                
+                <div id="announcements" class="hide-show-right">
+                    <h2>Announcements</h2>
+                    <div id="ann-grid">
+                        <div class="ann-item">
+                            <h2>Site Maintenance</h2>
+                            <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor...</p>
+                        </div>
+                        <div class="ann-item">
+                            <h2>Canada Day</h2>
+                            <p>Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes...</p>
+                        </div>
+                        <div class="ann-item">
+                            <h2>Updated Privacy Policy</h2>
+                            <p>nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem...</p>
+                        </div>
+                    </div>
+                </div>
+            
+                <div id="trending" class="hide-show-right">
+                    <h2 id="trending-text">Trending</h2>
+                    <div id="t-grid">
+                        <div class="t-item">
+                            <img src="../static/icons/dj.png">
+                            <div>
+                                <h4 class="t-item-user">@djbrian</h4>
+                                <p class="t-item-description">Music Project</p>
+                            </div>
+                        </div>
+                        <div class="t-item">
+                            <img  src="../static/icons/frontend.png">
+                            <div>
+                                <h4 class="t-item-user">@Alex</h4>
+                                <p class="t-item-description">Javascript Mentor</p>
+                            </div>
+                        </div>
+                        <div class="t-item">
+                            <img  src="../static/icons/backend.png">
+                            <div>
+                                <h4 class="t-item-user">@christopher</h4>
+                                <p class="t-item-description">Backend Expert</p>
+                            </div>
+                        </div>
+                        <div class="t-item">
+                            <img  src="../static/icons/messi.png">
+                            <div>
+                                <h4 class="t-item-user">@messi</h4>
+                                <p class="t-item-description">GOAT builder</p>
+                            </div>
+                        </div>
+                        
+                    </div>
+                           
+                </div>
+            </div>
+        </div>
+        
+        
+    
+    </div>
+    <script src="../static/library.js"></script>
+</body>
+</html>
+

@@ -1,0 +1,209 @@
+:root {goal-div
+    --lightblue: #aae1ff;
+    --blue-menu: #30a6e6;
+}
+
+.challenge {
+    background-color: #026faa;
+}
+
+
+
+#goal-div {
+    background-color: var(--lightblue);
+    -webkit-box-shadow: 5px 5px 5px 5px #CFD5DC; 
+    box-shadow: 5px 5px 5px 5px #CFD5DC;
+    width: 60vw;
+    min-width: 800px;
+    margin-top: 40px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+}
+
+#challenge-banner {
+    background-color: ;
+
+    /*
+    comment height: height of this element determinded by font-size
+    */
+    /*height: 14vh;*/
+
+    font-size: 1.2rem;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 1rem;
+    align-self: center;
+}
+
+#challenge-banner > img {
+
+    width: 50px;
+}
+
+#challenge-banner > h1 {
+    display: flex;
+    flex-direction: column;
+    align-self: center;
+}
+
+#goal-box {
+    display: flex;
+    flex-direction: column;
+    align-self: center;
+    
+    gap: 1rem;
+
+    background-color: white;
+    width: ;
+    height: 10.8rem;
+    background-color: var(--lightblue);
+
+}
+
+#challenge-banner > h1 {
+    color: black; var(--blue-menu);
+    -webkit-text-stroke-width: 1px;
+    -webkit-text-stroke-color: black;
+}
+
+#goal-line {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 0.8rem;
+
+    height: 5rem;
+}
+
+#goal-line > p, input {
+    font-size: 2rem;
+
+    display: flex;
+    align-self: center;
+    text-align: center;
+
+}
+
+#goal-line > input {
+    height: 2.25rem;
+    width: 4.5rem;;
+
+    -webkit-appearance: none;
+}
+
+#goal-line > input::-webkit-inner-spin-button, 
+input::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+}
+
+#challenge-btn-gp {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 0.5rem;
+}
+
+#challenge-btn-gp > button {
+    width: 15rem;
+    height: 3.5rem;
+    font-size: 1.35rem;
+}
+
+#update-btn {
+    background-color: var(--blue-menu);
+    color: white;
+}
+
+#progress-div {
+    background-color: var(--lightblue);
+    -webkit-box-shadow: 5px 5px 5px 5px #CFD5DC; 
+    box-shadow: 5px 5px 5px 5px #CFD5DC;
+    width: 60vw;
+    min-width: 800px;
+    margin-top: 40px;
+
+    /* Comment height: height determinded by content and padding */
+    /*height: 30vh;*/
+
+    /*adding space at the bottom*/
+    padding-bottom: 3rem;
+
+    position: relative; /*so edit icon can be positioned inside it*/
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+}
+
+#progress-div > output {
+    
+    /*Comment height and width: both determinded by font size*/
+    /*height: 30px;*/
+    /*width: 30vw;*/
+    font-size: 30px;
+}
+
+.ui-progressbar {
+    position: relative;
+}
+
+#progressbar {
+    background: #fcfcfcf1;
+    width: 30vw;
+    height: 30px;
+
+    display: flex;
+    align-self: center;
+}
+
+.ui-progressbar .ui-progressbar-value {
+    margin: 0;
+}
+
+#progress-label {
+    position: absolute;
+    background-color: green;
+    
+    height: 30px;
+}
+
+#progressbar > output {
+    
+} 
+
+#bar-n-percent {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 20px;
+
+    justify-content: center; /*center the progress*/
+    font-size: 30px;
+}
+
+.edit-prog-icon {
+    width: 30px;
+    height: 30px;
+
+    display: flex;
+    /*
+    flex-direction: row;
+    justify-content: flex-end;
+    */
+    align-self: center;
+    
+    /*position edit icon at top right. Position absolute only works if we give 'position: relative' 
+    to the immediate parent of edit icon, which is Progress Div*/
+    position: absolute;
+    right: 31px;
+    top: 34px;
+    
+}
