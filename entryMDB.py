@@ -19,7 +19,7 @@ app.config['MONGODB_SETTINGS'] = {
     #'db': 'BlogApp',
     #'host': 'localhost',
     #'port': 27017
-    'host': 'mongodb+srv://cyl2chan:bookApp2024.@clusterbookapp.xtb2gpk.mongodb.net/?retryWrites=true&w=majority'
+    'host': 'mongodb+srv://cyl2chan:mX3kXahyuxIcJ9eT@clusterbookapp.xtb2gpk.mongodb.net/?retryWrites=true&w=majority'
 }
 app.config['SECRET_KEY'] = 'supersecretstring123456789' #'super secret string'
 db = MongoEngine()
