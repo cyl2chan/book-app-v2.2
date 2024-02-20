@@ -35,7 +35,6 @@ login_manager.init_app(app)
 """
 users = {
     {'student@ryerson.ca': {'password': 'secret'}}, 
-    {'oskar@blackdiamondsoftware.ca': {'password': 'oskarBook'}},
     {'demo@gmail.com': {'password': 'demoBook'}}
     }
 """
