@@ -15,6 +15,7 @@ import random
 
 
 app = Flask(__name__, template_folder='template', static_folder = 'static')
+"""
 app.config['MONGODB_SETTINGS'] = {
     #'db': 'BlogApp',
     #'host': 'localhost',
@@ -24,7 +25,10 @@ app.config['MONGODB_SETTINGS'] = {
 app.config['SECRET_KEY'] = 'supersecretstring123456789' #'super secret string'
 db = MongoEngine()
 db.init_app(app)
-
+"""
+app.config['MONGODB_HOST'] = "mongodb+srv://root:root@cluster0.q8mckwg.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0"
+app.config['SECRET_KEY'] = 'supersecretstring123456789' #'super secret string'
+db = MongoEngine(app)
 
 
 login_manager = LoginManager()
