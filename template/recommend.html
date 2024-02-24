@@ -1,196 +1,242 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../static/style.css">
-    <link rel="stylesheet" href="../static/recommend.css">
-    <link rel="icon" type="image/x-icon" href="../static/icons/newspaper.svg">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../static/style.css" />
+    <link rel="stylesheet" href="../static/recommend.css" />
+    <link rel="icon" type="image/x-icon" href="../static/icons/newspaper.svg" />
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <title>Recommendations</title>
-</head>
-<body>
-
+  </head>
+  <body>
     <div id="menu">
-        <div class="dashboard">
-            <img src="../static/icons/view-dashboard.svg">
-            <h1>Dashbboard</h1>
-        </div>
-        <div class="blank"></div>
-        <a class="menuItem" href="/library">
-            <img src="../static/icons/book-open-page-variant.svg">
-            <h2>Library</h2>
-        </a>
-        <a class="menuItem" href="/reading_challenge">
-            <img src="../static/icons/stairs-up.svg">
-            <h2>Challenge</h2>
-        </a>
-        <a class="menuItem" href="/blog">
-            <img src="../static/icons/post.svg">
-            <h2>Blog</h2>
-        </a>
-        <a class="menuItem recommendations" href="/recommend">
-            <img src="../static/icons/newspaper.svg">
-            <h2>Recommend</h2>
-        </a>
-
+      <div class="dashboard">
+        <img src="../static/icons/view-dashboard.svg" />
+        <h1>Dashbboard</h1>
+      </div>
+      <div class="blank"></div>
+      <a class="menuItem" href="/library">
+        <img src="../static/icons/book-open-page-variant.svg" />
+        <h2>Library</h2>
+      </a>
+      <a class="menuItem" href="/reading_challenge">
+        <img src="../static/icons/stairs-up.svg" />
+        <h2>Challenge</h2>
+      </a>
+      <a class="menuItem" href="/blog">
+        <img src="../static/icons/post.svg" />
+        <h2>Blog</h2>
+      </a>
+      <a class="menuItem recommendations" href="/recommend">
+        <img src="../static/icons/newspaper.svg" />
+        <h2>Recommend</h2>
+      </a>
     </div>
-    
+
     <div id="body-right">
-        <div id="header">
-            <div id="top">
-                <div id="topLeft">
-                    <img src="../static/icons/magnify.svg" id="seachIcon">
-                    <input type="text" id="searchBar">
-                </div>
-                <div id="topRight">
-                    <img src="../static/icons/bell-ring-outline.svg" id="bellRing">
-                    <img src="../static/icons/leon.png">
-                    <div class="dropdown">
-                        <input type="checkbox" id="dropdown"/>
-                            <label for="dropdown" class="dropdown-btn">
-                                <span><p>Leon Chan</p></span>
-                                <span class="arrow"></span>
-                            </label>
-                            <ul class="dropdown-content" role="menu">
-                                <li><a href="/logout">Logout</a></li>
-                            </ul>
-                    </div>
-                </div>
+      <div id="header">
+        <div id="top">
+          <div id="topLeft">
+            <img src="../static/icons/magnify.svg" id="seachIcon" />
+            <input type="text" id="searchBar" />
+          </div>
+          <div id="topRight">
+            <img src="../static/icons/bell-ring-outline.svg" id="bellRing" />
+            <img src="../static/icons/leon.png" />
+            <div class="dropdown">
+              <input type="checkbox" id="dropdown" />
+              <label for="dropdown" class="dropdown-btn">
+                <span><p>Leon Chan</p></span>
+                <span class="arrow"></span>
+              </label>
+              <ul class="dropdown-content" role="menu">
+                <li><a href="/logout">Logout</a></li>
+              </ul>
             </div>
-            <div id="tab">
-                <img src="../static/icons/leon.png">
-                <div id="greetings">
-                    <p id="hi">&nbsp; Hi there,</p>
-                    <p id="leon-chan">Leon Chan (@leon76)</p>
-                </div>
-                <div id="round-btn-gp">
-                    <!--<button class="round-btn">Upload</button>
-                    <button class="round-btn">Share</button>-->
-                </div>
-            </div>
-        </div>   
-        <div id="content">
-            <div id="content-left">
-                <h2 id="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Book Recommendations</h2>
-                
-                <div id="bookFeedPlaceHolder" class="left">
-                        
-                </div>
-            
-            </div>
-            <div id="content-right">
-                <div class="show-hide">
-                    <a id="showBtn" style="display: none"><img src="../static/icons/eye.svg"></a>
-                    <a id="hideBtn"><img src="../static/icons/eye-off.svg"></a>
-                </div>
-                <div id="announcements" class="hide-show-right">
-                    <h2>Announcements</h2>
-                    <div id="ann-grid">
-                        <div class="ann-item">
-                            <h2>Site Maintenance</h2>
-                            <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor...</p>
-                        </div>
-                        <div class="ann-item">
-                            <h2>Canada Day</h2>
-                            <p>Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes...</p>
-                        </div>
-                        <div class="ann-item">
-                            <h2>Updated Privacy Policy</h2>
-                            <p>nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem...</p>
-                        </div>
-                    </div>
-                </div>
-            
-                <div id="trending" class="hide-show-right">
-                    <h2 id="trending-text">Trending</h2>
-                    <div id="t-grid">
-                        <div class="t-item">
-                            <img src="../static/icons/dj.png">
-                            <div>
-                                <h4 class="t-item-user">@djbrian</h4>
-                                <p class="t-item-description">Music Project</p>
-                            </div>
-                        </div>
-                        <div class="t-item">
-                            <img  src="../static/icons/frontend.png">
-                            <div>
-                                <h4 class="t-item-user">@Alex</h4>
-                                <p class="t-item-description">Javascript Mentor</p>
-                            </div>
-                        </div>
-                        <div class="t-item">
-                            <img  src="../static/icons/backend.png">
-                            <div>
-                                <h4 class="t-item-user">@christopher</h4>
-                                <p class="t-item-description">Backend Expert</p>
-                            </div>
-                        </div>
-                        <div class="t-item">
-                            <img  src="../static/icons/messi.png">
-                            <div>
-                                <h4 class="t-item-user">@messi</h4>
-                                <p class="t-item-description">GOAT builder</p>
-                            </div>
-                        </div>
-                        
-                    </div>
-                           
-                </div>
-            </div>
+          </div>
         </div>
-        
-        
-    
+        <div id="tab">
+          <img src="../static/icons/leon.png" />
+          <div id="greetings">
+            <p id="hi">&nbsp; Hi there,</p>
+            <p id="leon-chan">Leon Chan (@leon76)</p>
+          </div>
+          <div id="round-btn-gp">
+            <!--<button class="round-btn">Upload</button>
+                    <button class="round-btn">Share</button>-->
+          </div>
+        </div>
+      </div>
+      <div id="content">
+        <div id="content-left">
+          <h2 id="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Book Recommendations</h2>
+
+          <div id="bookFeedPlaceHolder" class="left"></div>
+        </div>
+        <div id="content-right">
+          <div class="show-hide">
+            <a id="showBtn" style="display: none"
+              ><img src="../static/icons/eye.svg"
+            /></a>
+            <a id="hideBtn"><img src="../static/icons/eye-off.svg" /></a>
+          </div>
+          <div id="announcements" class="hide-show-right">
+            <h2>Announcements</h2>
+            <div id="ann-grid">
+              <div class="ann-item">
+                <h2>Site Maintenance</h2>
+                <p>
+                  Lorem ipsum dolor sit amet, consectetuer adipiscing elit.
+                  Aenean commodo ligula eget dolor...
+                </p>
+              </div>
+              <div class="ann-item">
+                <h2>Canada Day</h2>
+                <p>
+                  Aenean massa. Cum sociis natoque penatibus et magnis dis
+                  parturient montes...
+                </p>
+              </div>
+              <div class="ann-item">
+                <h2>Updated Privacy Policy</h2>
+                <p>
+                  nascetur ridiculus mus. Donec quam felis, ultricies nec,
+                  pellentesque eu, pretium quis, sem...
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div id="trending" class="hide-show-right">
+            <h2 id="trending-text">Trending</h2>
+            <div id="t-grid">
+              <div class="t-item">
+                <img src="../static/icons/dj.png" />
+                <div>
+                  <h4 class="t-item-user">@djbrian</h4>
+                  <p class="t-item-description">Music Project</p>
+                </div>
+              </div>
+              <div class="t-item">
+                <img src="../static/icons/frontend.png" />
+                <div>
+                  <h4 class="t-item-user">@Alex</h4>
+                  <p class="t-item-description">Javascript Mentor</p>
+                </div>
+              </div>
+              <div class="t-item">
+                <img src="../static/icons/backend.png" />
+                <div>
+                  <h4 class="t-item-user">@christopher</h4>
+                  <p class="t-item-description">Backend Expert</p>
+                </div>
+              </div>
+              <div class="t-item">
+                <img src="../static/icons/messi.png" />
+                <div>
+                  <h4 class="t-item-user">@messi</h4>
+                  <p class="t-item-description">GOAT builder</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
-
-
-
 
     <script>
+      $(document).ready(function () {
+        var rssFeedUrl = "https://www.bookbrowse.com/blogs/editor/rss.cfm";
+        loadFeed(rssFeedUrl, "#bookFeedPlaceHolder");
+
         function loadFeed(feedUrl, placeholder) {
+          $.ajax({
+            url: feedUrl,
+            method: "GET",
+            dataType: "xml",
+            success: function (data) {
+              // Clear placeholder before appending new items
+              $(placeholder).empty();
 
-            $.get(feedUrl, function (data) {
-                $(data).find("item").each(function () { 
-                var el = $(this);
-
-                console.log("------------------------");
-                console.log("title  	: " + el.find("title").text());
-                console.log("author 	: " + el.find("link").text());
-                console.log("description: " + el.find("description").text());
-                
-                itemTitle = el.find("title").text();
-                    itemUrl = el.find("link").text();
-                    itemDescription = el.find("description").text();
-                
-                newItem = "<item>" + "<br>" + "<a href=\"" + itemUrl + "\">" +itemTitle + "</a>" + "</br>"
-                    + "<br>" + itemDescription + "</br>" + "<br>&nbsp;</br>" + "</item>";
-                
-                $(placeholder).append(newItem);
+              // Parse XML data
+              $(data)
+                .find("item")
+                .each(function () {
+                  var el = $(this);
+                  var itemTitle = el.find("title").text();
+                  var itemUrl = el.find("link").text();
+                  var itemDescription = el.find("description").text();
+                  var newItem =
+                    "<div><a href='" +
+                    itemUrl +
+                    "'>" +
+                    itemTitle +
+                    "</a><p>" +
+                    itemDescription +
+                    "</p></div>";
+                  $(placeholder).append(newItem);
                 });
-            });
+            },
+            error: function (xhr, status, error) {
+              console.error("Error fetching RSS feed:", error);
+              // If XML parsing fails, fall back to JSON method
+              loadFeedJSON(feedUrl, placeholder);
+            },
+          });
         }
 
-        bookFeedUrl = "https://www.bookbrowse.com/blogs/editor/rss.cfm"
+        function loadFeedJSON(feedUrl, placeholder) {
+          $.ajax({
+            url: "https://api.rss2json.com/v1/api.json",
+            method: "GET",
+            dataType: "json",
+            data: {
+              rss_url: feedUrl,
+            },
+            success: function (data) {
+              if (data.status == "ok") {
+                displayFeed(data.items, placeholder);
+              } else {
+                console.error("Error fetching RSS feed");
+              }
+            },
+            error: function (xhr, status, error) {
+              console.error("Error fetching RSS feed:", error);
+            },
+          });
+        }
 
-        loadFeed(bookFeedUrl, "#bookFeedPlaceHolder");
-        
+        function displayFeed(items, placeholder) {
+          var rssContent = "<ul>";
+          items.forEach(function (item) {
+            rssContent +=
+              '<item><a href="' +
+              item.link +
+              '">' +
+              item.title +
+              "</a>" +
+              item.description +
+              "<br>&nbsp;</br></item>";
+          });
+          rssContent += "</ul>";
+          $(placeholder).html(rssContent);
+        }
+      });
 
-        //show hide icon function
-        $(document).ready(function(){
-            $("#hideBtn").click(function(){
-                $(".hide-show-right").hide();
-                $("#hideBtn").hide();
-                $("#showBtn").show();
-            });
+      $(document).ready(function () {
+        $("#hideBtn").click(function () {
+          $(".hide-show-right").hide();
+          $("#hideBtn").hide();
+          $("#showBtn").show();
+        });
 
-            $("#showBtn").click(function(){
-                $(".hide-show-right").show();
-                $("#showBtn").hide();
-                $("#hideBtn").show();
-            });
-        })
-
+        $("#showBtn").click(function () {
+          $(".hide-show-right").show();
+          $("#showBtn").hide();
+          $("#hideBtn").show();
+        });
+      });
     </script>
-</body>
+  </body>
 </html>
