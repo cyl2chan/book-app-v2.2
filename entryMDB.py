@@ -51,6 +51,8 @@ users = {
 class User(UserMixin):
     pass #placeholder for future code
 
+    #comments = db.relationship('Comment', backref='author', lazy='dynamic')
+
 # Login manager loads user by email from mock database
 # A user loader tells Flask-Login how to get a specific user object from the ID that is stored in the session cookie
 @login_manager.user_loader
@@ -123,6 +125,8 @@ class Entry(db.Document):
     book_title = db.StringField()
     date = db.StringField()
     content = db.StringField()
+    comments = db.ListField(db.ReferenceField('Comment'))
+    #comments = db.relationship('Comment', backref='entry', lazy='dynamic')
 
     meta = {'collection' : 'Entry', 'allow_inheritance' : False}
 
@@ -206,16 +210,113 @@ def delete_entry():
         entry.delete()    
         return ("Deleted Entry with id:" + update_entry_id)
 
+
+
+
+
+
+
+#comment section
+class Comment(db.Document):
+    comment_id = db.IntField()
+    #author_id = db.IntField()
+    entry_id = db.IntField()
+    comment_content = db.StringField()
+    comment_date = db.StringField()
+    
+    meta = {'collection' : 'Comment', 'allow_inheritance' : False}
+
+"""
+@app.route('/add-comment-ajax', methods=['GET', 'POST'])
+@login_required
+def add_comment_ajax():
+    return redirect('/<ent_id>/add-comment')
+"""
+
+@app.route('/<ent_id>/add-comment', methods=['GET', 'POST'])
+@login_required
+def add_comment(ent_id):
+    entries = Entry.objects(entry_id=ent_id)
+    print(ent_id)
+    entry = entries.first()
+
+    #comments = Comment.objects(comment_id=com_id)
+    com_id = random.randint(0, 10000)
+    #if request.method == 'POST':
+    comment_content = request.form['comment_content']
+    print("comment content:", comment_content) 
+    
+    if not comment_content:
+        print('Comment cannot be empty.')
+    else:
+        new_comment = Comment(comment_id=com_id, entry_id =ent_id, #author_id=author_id
+            comment_content=comment_content) #comment_date=comment_date
+        new_comment.save()
+
+    return redirect('/blog')
+    #return render_template('blog.html', entry_list=list(entries), comment_list=list(comments), entry=entry, comment=comment)
+
+
+@app.route('/delete-comment/<com_id>', methods=['GET', 'POST'])
+@login_required
+def delete_comment(com_id):
+    comments = Comment.objects(comment_id=com_id)
+    comment = comments.first()
+
+    print("/delete-comment/<comment_id>:", com_id)
+    if not comment:
+        return ("/delete-comment/<comment_id>: Comment id not found!")
+    else: 
+        comment.delete()
+
+    return redirect('/blog')
+
+
+@app.route('/<ent_id>/list-comment', methods=['GET', 'POST'])
+def list_all_comments(ent_id, comment_content):
+    entries = Entry.objects(entry_id=ent_id)
+    entry = entries.first()
+    comments = Comment.objects(entry_id=ent_id, comment_content=comment_content)
+    comment= comments.first()
+
+    return render_template("blog.html", entry=entry, comment_list=list(comments)) #, comment=comment)
+
 @app.route('/blog', methods=['GET'])
 @login_required
 def list_entries():
-    entries = Entry.objects
+    entries = Entry.objects()
     entry = entries.first()
 
-    #print(db)
-    return render_template('blog.html', entry_list=list(entries), entry=entry)
+    entry_comments = {}
+    
+    for entry in entries:
+        comments = Comment.objects(entry_id=entry.entry_id)
+        entry_comments[entry.entry_id] = comments
 
 
+    return render_template('blog.html', entry_list=list(entries), 
+        entry_comments=entry_comments, entry=entry) #comment=comment)
+
+"""
+#correct
+@app.route('/blog', methods=['GET'])
+@login_required
+def list_entries():
+    entries = Entry.objects()
+    
+    # Create a dictionary to store comments for each entry_id
+    entry_comments = {}
+    
+    # Iterate through each entry
+    for entry in entries:
+        # Retrieve comments associated with the current entry's entry_id
+        comments = Comment.objects(entry_id=entry.entry_id)
+        # Store the comments in the dictionary with the entry_id as the key
+        entry_comments[entry.entry_id] = comments
+    
+    # Return the template with the entries and their respective comments
+    return render_template('blog.html', entry=entry, entry_list=list(entries), entry_comments=entry_comments)
+"""
 
 
 @app.route('/library')

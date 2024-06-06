@@ -80,6 +80,157 @@ plan: find entry_id with ajax, then use entry _id to find entry in database to u
 
 
 
+May 10, 2024
+
+V Comment: HTML, CSS
+V Comment model
+Comment add function 
+
+
+May 11, 2024 (Sat)
+
+V def add_comment()
+V def delete_comment(comment_id)
+    but require review
+working on comment-list section's HTML CSS 
+
+May 13, 2024 (Mon)
+
+working on comment-list section's HTML CSS 
+
+May 14, 2024 (Tue)
+
+V comment-list section's HTML CSS 
+V add comment into MongoDB
+
+next: listing comments -- make comment display under entry
+try render_template, not redirect
+
+
+try below for comment in def add_comment:
+    entries = Entry.objects(entry_id=update_entry_id)
+    entry = entries.first()
+
+
+May 16, 2024
+
+V able to display comments of the same entry under all entries
+problem: comments should only be displayed under the entry of repective entry_id
+
+
+May 17, 2024 
+
+V display comments under entry with the corresponding entry_id 
+problem: page reloads every time add comment
+
+steps:
+- use javascript with ajax
+- remove "action="/add-comment" in the <form> for comet submissison
+    - instead add it in ajax script 
+
+
+May 18, 2024
+
+- how to pass argument into URL?
+
+
+May 19, 2024 
+
+- use hidden input field for ajax to get entry_id of the entry 
+
+
+May 20, 2024
+
+- store data attribute in button and retrieve data-entry-id 
+    for indicating comment form's entry-id in class name
+
+V managed to pass ent_id from data attribute in butotn to ajax then to python code 
+
+next: pass comment to python code 
+currently: console.log(commentContent) in$(document).on("submit", ".comment-form{{entry_id}}", function(event) )
+    is undefined 
+
+V console.log commentcontent is successful
+
+next:
+- displaying comment below entry 
+    success: function() {
+        //$('.comment-text').val(.input-comment-content);
+        document.getElementsByClassName("comment-text").text(commentContent);
+        //alert('Form submitted!');
+    }    
+
+- pass commentContent to python code
+    comment_content = request.form.get(comment-content=comment_content)
+
+    How to pass commentContetn from Ajax to python code?
+
+
+May 21, 2024 
+
+V Store newly added comment to database 
+
+still working on to display comment below entry with ajax 
+- show() respective divs with correct class name or id 
+- attach text to div of comment 
+- add div of comment to comment list div
+
+V done: add comment under respective entry without reloading page
+
+
+May 25, 2024
+
+V delete correct comment with page reload 
+
+next: use ajax to delete correct comment WITHOUT page reload 
+
+
+May 28, 2024
+
+V get access to comment_id with console.log when click X of comment 
+V comment deleted in database after clicking X of comment. COmment gone after refresh page 
+
+next: get comment deleted immediately after clicking X of comment 
+
+V comment deleted immediately after clicking X of comment 
+
+next problem: Each time a comment is submitted, next time comment is added one more time (ajax sending one more request)
+
+
+Jun 6, 2024
+
+V problem solved: ach time a comment is submitted, next time comment is added one more time (ajax sending one more request)
+    why problem happened? 
+        A submission event is inside a button click event.
+        So each time I add comment, next time the number of comment added increases by one
+        First time, comment is submitted once. Second time, submitted twice. Third time, submitted three times. 
+    Solution: Just remove the line of event submission. I jsut need the click event of comment button
+
+
+next problem: able to delete newly added comments when clicking X b4 the page is reload
+
+solution: 
+V generate comment id in ajax JS, then
+V use that JS generated comment id to add it to comment-commentID{{comment.comment_id}} and {{comment.comment_id}} in HTML of newly added comment in ajax
+- and pass it to .py
+    error: 
+        File "/home/torontomet/book-app/book-app-v2.2/entryMDB.py", line 243, in add_comment
+        comments = Comment.objects(comment_id=com_id)
+        NameError: name 'com_id' is not defined
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

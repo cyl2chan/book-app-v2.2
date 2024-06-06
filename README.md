@@ -1,5 +1,7 @@
 # book-app-v2
 
+updates: In the blog page, users now can add and delete comment under each entry. 
+
 __Language and Skills__: Python, Javascript, CSS, HTML, Flask, MongoDB
 
 Click the link under "About" on the right hand side of the screen to see my app.
