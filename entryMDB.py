@@ -240,16 +240,17 @@ def add_comment(ent_id):
     print(ent_id)
     entry = entries.first()
 
-    #comments = Comment.objects(comment_id=com_id)
-    com_id = random.randint(0, 10000)
-    #if request.method == 'POST':
+    comt_id = request.form.get('com_id')
+    print('comment ID:', comt_id)
+    #com_id = random.randint(0, 10000)
+
     comment_content = request.form['comment_content']
     print("comment content:", comment_content) 
     
     if not comment_content:
         print('Comment cannot be empty.')
     else:
-        new_comment = Comment(comment_id=com_id, entry_id =ent_id, #author_id=author_id
+        new_comment = Comment(comment_id=comt_id, entry_id =ent_id, #author_id=author_id
             comment_content=comment_content) #comment_date=comment_date
         new_comment.save()
 

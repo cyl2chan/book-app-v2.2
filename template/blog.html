@@ -279,7 +279,6 @@
                 console.log("comment-list:" + comment_list_EntryId); 
                 console.log(objEntry_id); 
 
-                //$(document).on("submit", objEntry_id, function(event) { 
                     event.preventDefault();
                     console.log("form submitted");
                     console.log("on submit:" + objEntry_id);
@@ -296,14 +295,15 @@
                         url: '/' + entry_id +'/add-comment',
                         data: {
                             ent_id: entry_id,
-                            //com_id: comment_id,
+                            'com_id': comment_id,
                             comment_content: commentContent,
                         },
                         success: function() {
                                 var comment_list = document.getElementsByClassName(comment_list_EntryId)[0];
-                        /*
+                                
+                                input_comment_content_entId = "input-comment-content" + entry_id;
+                                var comment_input = document.getElementById(input_comment_content_entId);
 
-                        */ 
                                 comment_list.innerHTML += 
                                     
                                     `<div class="comment-post comment-commentID`
@@ -326,24 +326,9 @@
                                         `>X</h3>
                                         
                                     </div>`;
-                                /*
-                               newHTML = 
-                                    `<div class="comment-post">
-                                        <div class="comment-left-area">
-                                            <img src="../static/icons/leon.png">
-                                        </div>
-                                        <div class="comment-bubble">
-                                            <h3>Leon Chan</h3>
-                                            <p class="comment-text">`
-                                    + commentContent +
-                                            `</p>
-                                        </div>
-                                        
-                                        <h3 id="X">X</h3>
-                                        
-                                    </div>`;
-                                $("." + comment_list_EntryId).append(newHTML);
-                                */
+
+                                comment_input.value = ""; //clear input field after submitting comment
+
                         }
                     });
                 //});

@@ -219,6 +219,22 @@ V use that JS generated comment id to add it to comment-commentID{{comment.comme
         NameError: name 'com_id' is not defined
 
 
+Jun 7, 2024
+
+V problem solved: now able to delete newly added comments b4 reloading the page
+V clear input fields after submitting comment
+V make all borders of the entries, including comment sections, have the same width
+
+next: work on recommendations page. Display articles from RSS feed.
+    problem: not able to be displayed in deployment
+
+
+
+
+
+
+
+
 
 
 
