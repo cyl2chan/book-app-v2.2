@@ -319,7 +319,6 @@ def list_entries():
     return render_template('blog.html', entry=entry, entry_list=list(entries), entry_comments=entry_comments)
 """
 
-
 @app.route('/library')
 @login_required
 def library_page():

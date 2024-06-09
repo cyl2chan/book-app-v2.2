@@ -148,6 +148,8 @@
 
 
     <script>
+
+
         function loadFeed(feedUrl, placeholder) {
 
             $.get(feedUrl, function (data) { //$=jQuery; .get is "load data from sever"
@@ -174,7 +176,7 @@
         bookFeedUrl = "https://www.bookbrowse.com/blogs/editor/rss.cfm"
 
         loadFeed(bookFeedUrl, "#bookFeedPlaceHolder");
-        
+    
 
         //show hide icon function
         $(document).ready(function(){
