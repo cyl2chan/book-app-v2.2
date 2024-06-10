@@ -319,6 +319,21 @@ def list_entries():
     return render_template('blog.html', entry=entry, entry_list=list(entries), entry_comments=entry_comments)
 """
 
+import feedparser
+import urllib.request, json 
+import requests
+@app.route('/get_bookbrowse_blog_feed')
+@login_required
+def get_bookbrowse_blog_feed():
+    feed_url = "https://www.bookbrowse.com/blogs/editor/rss.cfm"
+    data = requests.get(feed_url)
+    return data.content#, data.status_code, {'Content-Type': 'application/rss+xml'}
+    """
+    BookbrowseBlogFeed = "https://www.bookbrowse.com/blogs/editor/rss.cfm"
+    print(BookbrowseBlogFeed)
+    return BookbrowseBlogFeed
+    """
+
 @app.route('/library')
 @login_required
 def library_page():

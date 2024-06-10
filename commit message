@@ -232,6 +232,14 @@ next: work on recommendations page. Display articles from RSS feed.
 Jun 8, 2024
 
 V did research on issues of recommendations page
+solution: link URL from front-end to .py. Fetch data of RSS Feed with python
+
+
+Jun 10, 2024
+
+manage to print url content with python, but nothing happens in JS when console.log 
+V manage to display articles by using request.get(url) and .content to make HTTP request in the backend and send data to the frontend
+
 
 
 

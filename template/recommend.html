@@ -149,9 +149,7 @@
 
     <script>
 
-
         function loadFeed(feedUrl, placeholder) {
-
             $.get(feedUrl, function (data) { //$=jQuery; .get is "load data from sever"
                 $(data).find("item").each(function () { 
                 var el = $(this);
@@ -173,7 +171,7 @@
             });
         }
 
-        bookFeedUrl = "https://www.bookbrowse.com/blogs/editor/rss.cfm"
+        var bookFeedUrl = "/get_bookbrowse_blog_feed";//"https://www.bookbrowse.com/blogs/editor/rss.cfm"
 
         loadFeed(bookFeedUrl, "#bookFeedPlaceHolder");
     
