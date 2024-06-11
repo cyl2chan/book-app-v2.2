@@ -338,16 +338,18 @@ import requests
 @app.route('/get_bookbrowse_blog_feed')
 @login_required
 def get_bookbrowse_blog_feed():
+    """"
     feed_url = "https://www.bookbrowse.com/blogs/editor/rss.cfm"
     data = urllib.request.Request(feed_url)
     with urllib.request.urlopen(data) as response:
         page = response.read()
         return page
     """
-    method #2:
+    #method #2:
+    feed_url = "https://www.bookbrowse.com/blogs/editor/rss.cfm"
     data = requests.get(feed_url)
     return data.content#, data.status_code, {'Content-Type': 'application/rss+xml'}
-    """
+    
 
 @app.route('/library')
 @login_required
