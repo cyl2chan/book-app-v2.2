@@ -241,9 +241,16 @@ manage to print url content with python, but nothing happens in JS when console.
 V manage to display articles by using request.get(url) and .content to make HTTP request in the backend and send data to the frontend
 
 
+Jun 11, 2024
 
+V manage to use urllib.request.Request(feed_url) to display content published from BookBrowse
+next: like button
 
+Like ID manage to get generated and pass to .py then get stored in DB
+But entry_id is the same as like ID, and not the entry ID of the entry
+V manage to store like with correct entry_id
 
+next problem: when click like button that is already liked, the DB has the same like with a different like ID with the same entry ID. Now I need to delete the like in the DB when like button is clicked again. 
 
 
 

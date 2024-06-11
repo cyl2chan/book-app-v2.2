@@ -133,11 +133,13 @@
                             <p class="entry-content">{{ entry_obj.content }}</p>
                             <!--<p class="entry-id">{{ entry_obj.entry_id }}</p> -->
                         </div>
+                        
                         <div class="reaction">
-                            <div class="like">
+                            <a class="like" data-entry-id="{{entry_obj.entry_id}}">
                                 <img src="../static/icons/thumb-up-outline.svg">
                                 <h3>Like</h3>
-                            </div>
+                            </a>
+                            
                             <div class="comment">
                                 <img src="../static/icons/comment-outline.svg">
                                 <h3>Comment</h3>
@@ -173,7 +175,7 @@
                         
                         <form class="comment-form comment-form{{entry_obj.entry_id}}"> <!-- action='{{ entry_obj.entry_id }}/add-comment' method='POST'> -->
                             <input type="text" id="input-comment-content{{entry_obj.entry_id}}" name='comment-content' placeholder="Write a comment...">   
-                            <button  type='submit' id='comment-btn' data-entry-id="{{entry_obj.entry_id}}" onclick="">
+                            <button  type='submit' id='comment-btn' data-entry-id="{{entry_obj.entry_id}}">
                                 <img src="../static/icons/send.svg">
                             </button>
                             
@@ -334,8 +336,6 @@
                 //});
             });
 
-            
-
             $(document).on("click", ".del-comment", function(event) {
                 var comment_id = $(this).data("comment-id"); 
                 
@@ -357,27 +357,28 @@
 
             });
             
-           /*
-           //correct
-            $(document).on("click", ".del-comment", function(event) {
-                var comment_id = $(this).data("comment-id");
-                console.log("Deleting comment ID:", comment_id);
-                var commentSelector = ".comment-commentID" + comment_id;
+            $(document).on("click", ".like", function(event) {
+                var entry_id = $(this).data("entry-id"); 
+                console.log("entry ID of like button: " + entry_id); 
+                var like_id = Math.floor((Math.random() * 10000) + 1);
 
                 $.ajax({
-                    type: 'POST',
-                    url: '/delete-comment/' + comment_id,
-                    data: { com_id: comment_id },
-                    success: function(response) {
-                        $(commentSelector).remove();  // Ensure this selector is correct
-                    },
-                    error: function(error) {
-                        console.log("Error deleting comment:", error);
-                    }
+                        type: 'POST', 
+                        url: '/' + entry_id + '/like',
+                        data: {
+                            ent_id: entry_id,
+                            'lik_id': like_id,
+                        },
+                        success: function(response) {
+                            //if not yet like, like it, and make like button turn blue
+
+
+                            //if already liked, unlike it, and make like button turn 
+
+                        }
                 });
-            
-        });
-        */
+
+            })
 
         });
         

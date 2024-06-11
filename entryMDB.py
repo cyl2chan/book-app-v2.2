@@ -126,6 +126,7 @@ class Entry(db.Document):
     date = db.StringField()
     content = db.StringField()
     comments = db.ListField(db.ReferenceField('Comment'))
+    likes = db.ListField(db.ReferenceField('Like'))
     #comments = db.relationship('Comment', backref='entry', lazy='dynamic')
 
     meta = {'collection' : 'Entry', 'allow_inheritance' : False}
@@ -226,12 +227,6 @@ class Comment(db.Document):
     
     meta = {'collection' : 'Comment', 'allow_inheritance' : False}
 
-"""
-@app.route('/add-comment-ajax', methods=['GET', 'POST'])
-@login_required
-def add_comment_ajax():
-    return redirect('/<ent_id>/add-comment')
-"""
 
 @app.route('/<ent_id>/add-comment', methods=['GET', 'POST'])
 @login_required
@@ -273,6 +268,40 @@ def delete_comment(com_id):
     return redirect('/blog')
 
 
+
+
+#comment section
+class Like(db.Document):
+    like_id = db.IntField()
+    #author_id = db.IntField()
+    entry_id = db.IntField()
+    
+    meta = {'collection' : 'Like', 'allow_inheritance' : False}
+
+@app.route('/<ent_id>/like', methods=['GET', 'POST'])
+@login_required
+def like(ent_id):
+    entries = Entry.objects(entry_id=ent_id)
+    print("entry ID of like button: ", ent_id)
+    entry = entries.first()
+
+    lik_id = request.form.get('lik_id') #get like ID from ajax
+    print('like ID:', lik_id)
+
+    likes = Like.objects(like_id=lik_id)
+    like = likes.first()
+    
+    if not like: #if not yet like, like it
+        new_like = Like(like_id=lik_id, entry_id =ent_id) #author_id=author_id
+        new_like.save()
+    else: #if already liked, unlike it
+        like.delete()
+
+    return redirect('/blog')
+
+
+
+"""
 @app.route('/<ent_id>/list-comment', methods=['GET', 'POST'])
 def list_all_comments(ent_id, comment_content):
     entries = Entry.objects(entry_id=ent_id)
@@ -281,7 +310,7 @@ def list_all_comments(ent_id, comment_content):
     comment= comments.first()
 
     return render_template("blog.html", entry=entry, comment_list=list(comments)) #, comment=comment)
-
+"""
 @app.route('/blog', methods=['GET'])
 @login_required
 def list_entries():
@@ -289,49 +318,35 @@ def list_entries():
     entry = entries.first()
 
     entry_comments = {}
+    entry_likes = {}
     
     for entry in entries:
         comments = Comment.objects(entry_id=entry.entry_id)
         entry_comments[entry.entry_id] = comments
+
+        likes = Like.objects(entry_id=entry.entry_id)
+        entry_likes[entry.entry_id] = likes
 
 
     return render_template('blog.html', entry_list=list(entries), 
-        entry_comments=entry_comments, entry=entry) #comment=comment)
+        entry_comments=entry_comments, entry_likes=entry_likes, entry=entry) #comment=comment)
 
-"""
-#correct
-@app.route('/blog', methods=['GET'])
-@login_required
-def list_entries():
-    entries = Entry.objects()
-    
-    # Create a dictionary to store comments for each entry_id
-    entry_comments = {}
-    
-    # Iterate through each entry
-    for entry in entries:
-        # Retrieve comments associated with the current entry's entry_id
-        comments = Comment.objects(entry_id=entry.entry_id)
-        # Store the comments in the dictionary with the entry_id as the key
-        entry_comments[entry.entry_id] = comments
-    
-    # Return the template with the entries and their respective comments
-    return render_template('blog.html', entry=entry, entry_list=list(entries), entry_comments=entry_comments)
-"""
 
-import feedparser
+#import feedparser
 import urllib.request, json 
 import requests
 @app.route('/get_bookbrowse_blog_feed')
 @login_required
 def get_bookbrowse_blog_feed():
     feed_url = "https://www.bookbrowse.com/blogs/editor/rss.cfm"
+    data = urllib.request.Request(feed_url)
+    with urllib.request.urlopen(data) as response:
+        page = response.read()
+        return page
+    """
+    method #2:
     data = requests.get(feed_url)
     return data.content#, data.status_code, {'Content-Type': 'application/rss+xml'}
-    """
-    BookbrowseBlogFeed = "https://www.bookbrowse.com/blogs/editor/rss.cfm"
-    print(BookbrowseBlogFeed)
-    return BookbrowseBlogFeed
     """
 
 @app.route('/library')
