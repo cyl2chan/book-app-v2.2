@@ -13,8 +13,11 @@ from flask import Flask, request, jsonify, render_template, redirect
 from flask_mongoengine import MongoEngine
 import random 
 
+#recommend page
+from flask_cors import CORS
 
 app = Flask(__name__, template_folder='template', static_folder = 'static')
+CORS(app)
 """
 app.config['MONGODB_SETTINGS'] = {
     #'db': 'BlogApp',

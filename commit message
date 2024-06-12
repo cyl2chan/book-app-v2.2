@@ -199,7 +199,7 @@ next problem: Each time a comment is submitted, next time comment is added one m
 
 Jun 6, 2024
 
-V problem solved: ach time a comment is submitted, next time comment is added one more time (ajax sending one more request)
+V problem solved: Each time a comment is submitted, next time comment is added one more time (ajax sending one more request)
     why problem happened? 
         A submission event is inside a button click event.
         So each time I add comment, next time the number of comment added increases by one
@@ -207,7 +207,7 @@ V problem solved: ach time a comment is submitted, next time comment is added on
     Solution: Just remove the line of event submission. I jsut need the click event of comment button
 
 
-next problem: able to delete newly added comments when clicking X b4 the page is reload
+next problem: unable to delete newly added comments when clicking X b4 the page is reload
 
 solution: 
 V generate comment id in ajax JS, then
