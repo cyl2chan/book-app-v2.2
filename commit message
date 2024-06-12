@@ -254,9 +254,9 @@ next problem: when click like button that is already liked, the DB has the same 
 
 
 
+Jun 12, 2024
 
-
-
+remove "email-validator==2.1.0.post1" in requirements.txt
 
 
 
