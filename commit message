@@ -259,7 +259,10 @@ Jun 12, 2024
 remove "email-validator==2.1.0.post1" in requirements.txt
 
 
+Jun 13, 2024
 
+change "idna==3.6" to "idna==2.10"
+change "requests==2.25.1" to "requests==2.32.3"
 
 
 
