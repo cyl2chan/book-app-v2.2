@@ -30,7 +30,7 @@ app.config['SECRET_KEY'] = 'supersecretstring123456789' #'super secret string'
 db = MongoEngine()
 db.init_app(app)
 """
-#for online MOngoDB
+#for online MongoDB
 app.config['MONGODB_HOST'] = "mongodb+srv://user2000:user2000@cluster0.q8mckwg.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0"
 app.config['SECRET_KEY'] = 'supersecretstring123456789' #'super secret string'
 db = MongoEngine(app)
