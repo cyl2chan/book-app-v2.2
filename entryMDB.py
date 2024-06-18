@@ -293,14 +293,16 @@ def like(ent_id):
     lik_id = request.form.get('lik_id') #get like ID from ajax
     print('like ID:', lik_id)
 
-    likes = Like.objects(like_id=lik_id)
+    #likes = Like.objects(like_id=lik_id)
+    likes = Like.objects(entry_id=ent_id)
     like = likes.first()
     
-    if not like: #if not yet like, like it
+    if not like: #if there's no like of the same entry ID, generate new like w/ like ID
         new_like = Like(like_id=lik_id, entry_id =ent_id) #author_id=author_id
         new_like.save()
-    else: #if already liked, unlike it
-        like.delete()
+    else: #if entry w/ same entry ID already liked, find the like ID and delete it
+        like2 = Like.objects(entry_id=ent_id)
+        like2.delete()
 
     return redirect('/blog')
 

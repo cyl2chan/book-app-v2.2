@@ -137,7 +137,7 @@
                         <div class="reaction">
                             <a class="like" data-entry-id="{{entry_obj.entry_id}}">
                                 <img src="../static/icons/thumb-up-outline.svg">
-                                <h3>Like</h3>
+                                <h3 class="like-text">Like</h3>
                             </a>
                             
                             <div class="comment">
@@ -357,8 +357,10 @@
 
             });
             
+            
             $(document).on("click", ".like", function(event) {
-                var entry_id = $(this).data("entry-id"); 
+                var entry_id = $(this).data("entry-id");
+                var like_text = $(this).find(".like-text");
                 console.log("entry ID of like button: " + entry_id); 
                 var like_id = Math.floor((Math.random() * 10000) + 1);
 
@@ -370,15 +372,22 @@
                             'lik_id': like_id,
                         },
                         success: function(response) {
-                            //if not yet like, like it, and make like button turn blue
-
-
-                            //if already liked, unlike it, and make like button turn 
+                            //if like text is blue, make "like" text and icon blue
+                            if (like_text.css("color") == "blue") {
+                                console.log("like: blue --> grey");
+                                like_text.css("color", "grey");
+                            } else {
+                                //if like text is not blue, make "like" text and icon blue
+                                console.log("like: grey --> blue");
+                                like_text.css("color", "blue");
+                            }
 
                         }
                 });
 
             })
+            
+
 
         });
         

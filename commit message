@@ -265,7 +265,10 @@ change "idna==3.6" to "idna==2.10"
 change "requests==2.25.1" to "requests==2.32.3"
 
 
+Jun 18, 2024
 
+problem solved: manage to like and unlike in database
+next problem: not yet able to change like text from blue to gray after clicking it to blue
 
 
 
