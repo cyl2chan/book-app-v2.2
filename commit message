@@ -271,6 +271,14 @@ problem solved: manage to like and unlike in database
 next problem: not yet able to change like text from blue to gray after clicking it to blue
 
 
+Jun 19, 2024
+
+problem solved: manage to change like text from blue to gray after clicking it to blue
+
+next: 
+- if entry has like, like text and icon should be blue:L
+    - add like function def list_entries()
+
 
 
 

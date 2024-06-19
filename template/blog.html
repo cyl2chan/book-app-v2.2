@@ -136,8 +136,8 @@
                         
                         <div class="reaction">
                             <a class="like" data-entry-id="{{entry_obj.entry_id}}">
-                                <img src="../static/icons/thumb-up-outline.svg">
-                                <h3 class="like-text">Like</h3>
+                                <img class="like-icon" src="../static/icons/thumb-up-outline.svg">
+                                <h3 class="like-text" style="color:'{{entry_obj.like_color}}'">Like</h3>
                             </a>
                             
                             <div class="comment">
@@ -361,9 +361,9 @@
             $(document).on("click", ".like", function(event) {
                 var entry_id = $(this).data("entry-id");
                 var like_text = $(this).find(".like-text");
+                var like_icon = $(this).find(".like-icon");
                 console.log("entry ID of like button: " + entry_id); 
                 var like_id = Math.floor((Math.random() * 10000) + 1);
-
                 $.ajax({
                         type: 'POST', 
                         url: '/' + entry_id + '/like',
@@ -373,13 +373,19 @@
                         },
                         success: function(response) {
                             //if like text is blue, make "like" text and icon blue
-                            if (like_text.css("color") == "blue") {
+                            if (like_text.css("color") == "rgb(0, 0, 255)") {
                                 console.log("like: blue --> grey");
                                 like_text.css("color", "grey");
+                                //like_icon.css("color", "grey)");
+                                like_icon.css("filter", "brightness(0) saturate(100%) invert(52%) sepia(21%) saturate(7%) hue-rotate(26deg) brightness(93%) contrast(90%)");
+                        
                             } else {
                                 //if like text is not blue, make "like" text and icon blue
                                 console.log("like: grey --> blue");
                                 like_text.css("color", "blue");
+                                //like_icon.css("color", "blue)");
+                                like_icon.css("filter", "brightness(0) saturate(100%) invert(8%) sepia(100%) saturate(7470%) hue-rotate(248deg) brightness(96%) contrast(142%)");
+                                
                             }
 
                         }
@@ -387,7 +393,7 @@
 
             })
             
-
+            
 
         });
         

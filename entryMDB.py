@@ -280,6 +280,7 @@ class Like(db.Document):
     like_id = db.IntField()
     #author_id = db.IntField()
     entry_id = db.IntField()
+    #like_text_color = 
     
     meta = {'collection' : 'Like', 'allow_inheritance' : False}
 
@@ -332,11 +333,19 @@ def list_entries():
         entry_comments[entry.entry_id] = comments
 
         likes = Like.objects(entry_id=entry.entry_id)
+        like = likes.first()
         entry_likes[entry.entry_id] = likes
 
+        if like:
+            print(entry.entry_id) #good
+            
+            like_color = "rgb(0, 0, 255)"
+            like_filter_color = "brightness(0) saturate(100%) invert(8%) sepia(100%) saturate(7470%) hue-rotate(248deg) brightness(96%) contrast(142%)"
 
-    return render_template('blog.html', entry_list=list(entries), 
-        entry_comments=entry_comments, entry_likes=entry_likes, entry=entry) #comment=comment)
+
+    return render_template('blog.html', entry_list=list(entries), entry_comments=entry_comments, 
+        entry_likes=entry_likes, like_color=like_color, 
+        like_filter_color=like_filter_color, entry=entry) #comment=comment)
 
 
 #import feedparser
