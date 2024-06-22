@@ -280,7 +280,7 @@ class Like(db.Document):
     like_id = db.IntField()
     #author_id = db.IntField()
     entry_id = db.IntField()
-    #like_text_color = 
+    like_text_color = db.StringField()
     
     meta = {'collection' : 'Like', 'allow_inheritance' : False}
 
@@ -292,14 +292,16 @@ def like(ent_id):
     entry = entries.first()
 
     lik_id = request.form.get('lik_id') #get like ID from ajax
+    lik_text_color = request.form.get('lik_text_color')
     print('like ID:', lik_id)
+    print('like text color:', lik_text_color)
 
     #likes = Like.objects(like_id=lik_id)
     likes = Like.objects(entry_id=ent_id)
     like = likes.first()
     
     if not like: #if there's no like of the same entry ID, generate new like w/ like ID
-        new_like = Like(like_id=lik_id, entry_id =ent_id) #author_id=author_id
+        new_like = Like(like_id=lik_id, entry_id =ent_id, like_text_color=lik_text_color) #author_id=author_id
         new_like.save()
     else: #if entry w/ same entry ID already liked, find the like ID and delete it
         like2 = Like.objects(entry_id=ent_id)
@@ -324,28 +326,39 @@ def list_all_comments(ent_id, comment_content):
 def list_entries():
     entries = Entry.objects()
     entry = entries.first()
+    likes = Like.objects(entry_id=entry.entry_id)
+    like = likes.first()
 
     entry_comments = {}
     entry_likes = {}
-    
+    like_text_color = like.like_text_color
+
     for entry in entries:
+        #print(entry.entry_id)
         comments = Comment.objects(entry_id=entry.entry_id)
         entry_comments[entry.entry_id] = comments
 
-        likes = Like.objects(entry_id=entry.entry_id)
-        like = likes.first()
-        entry_likes[entry.entry_id] = likes
+        for like in likes:
+            print(like.entry_id) #success
+            print(like.like_text_color) #success
+            likes = Like.objects(entry_id=entry.entry_id, like_text_color=like.like_text_color)
+            like = likes.first()
+            entry_likes[entry.entry_id] = likes
 
+        """
         if like:
             print(entry.entry_id) #good
             
-            like_color = "rgb(0, 0, 255)"
-            like_filter_color = "brightness(0) saturate(100%) invert(8%) sepia(100%) saturate(7470%) hue-rotate(248deg) brightness(96%) contrast(142%)"
-
+            like_text_color = "rgb(0, 0, 255)"
+            #like_filter_color = "brightness(0) saturate(100%) invert(8%) sepia(100%) saturate(7470%) hue-rotate(248deg) brightness(96%) contrast(142%)"
+            likes = Like.objects(entry_id=entry.entry_id, like_text_color=like_text_color)
+            like = likes.first()
+        """
 
     return render_template('blog.html', entry_list=list(entries), entry_comments=entry_comments, 
-        entry_likes=entry_likes, like_color=like_color, 
-        like_filter_color=like_filter_color, entry=entry) #comment=comment)
+        entry_likes=entry_likes, like_text_color=like_text_color, 
+        #like_filter_color=like_filter_color, 
+        entry=entry) #comment=comment)
 
 
 #import feedparser

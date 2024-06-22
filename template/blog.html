@@ -137,7 +137,8 @@
                         <div class="reaction">
                             <a class="like" data-entry-id="{{entry_obj.entry_id}}">
                                 <img class="like-icon" src="../static/icons/thumb-up-outline.svg">
-                                <h3 class="like-text" style="color:'{{entry_obj.like_color}}'">Like</h3>
+                                <h3 class="like-text" style="color:'{{entry_obj.likes.like_text_color}}'">Like</h3>
+
                             </a>
                             
                             <div class="comment">
@@ -370,6 +371,7 @@
                         data: {
                             ent_id: entry_id,
                             'lik_id': like_id,
+                            'lik_text_color': "rgb(0, 0, 255)" //blue
                         },
                         success: function(response) {
                             //if like text is blue, make "like" text and icon blue

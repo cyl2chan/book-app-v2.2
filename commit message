@@ -276,9 +276,18 @@ Jun 19, 2024
 problem solved: manage to change like text from blue to gray after clicking it to blue
 
 next: 
-- if entry has like, like text and icon should be blue:L
+- if entry is already liked by me, like text and icon should be blue even after reloading the page, or when first enter the page:
     - add like function def list_entries()
 
+good: already pass like_text_color to .py
+
+next: need to have like_text_color in def list_entries();
+        color's value of like text should also be fixed, use for loop
+
+fine: manage to pass like_text_color in def list_entries() in .py
+problem still exist: entries with likes are still not having like text in blue
+next sub-problem: fix color's value in HTML
+    {{entry_obj.likes.like_text_color}} is incorrect
 
 
 
