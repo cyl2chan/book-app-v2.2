@@ -290,6 +290,10 @@ next sub-problem: fix color's value in HTML
     {{entry_obj.likes.like_text_color}} is incorrect
 
 
+Jun 22, 2024
+
+problem solved: like button appear to be blue when entry has like in the DB, and grey if entry doesn't have like
+
 
 
 

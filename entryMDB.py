@@ -338,12 +338,12 @@ def list_entries():
         comments = Comment.objects(entry_id=entry.entry_id)
         entry_comments[entry.entry_id] = comments
 
-        for like in likes:
-            print(like.entry_id) #success
-            print(like.like_text_color) #success
-            likes = Like.objects(entry_id=entry.entry_id, like_text_color=like.like_text_color)
-            like = likes.first()
-            entry_likes[entry.entry_id] = likes
+        #for like in likes:
+            #print(like.entry_id) #success
+            #print(like.like_text_color) #success
+        likes = Like.objects(entry_id=entry.entry_id)#, like_text_color=like.like_text_color)
+        like = likes.first()
+        entry_likes[entry.entry_id] = likes
 
         """
         if like:
@@ -356,7 +356,7 @@ def list_entries():
         """
 
     return render_template('blog.html', entry_list=list(entries), entry_comments=entry_comments, 
-        entry_likes=entry_likes, like_text_color=like_text_color, 
+        entry_likes=entry_likes, #like_text_color=like_text_color, 
         #like_filter_color=like_filter_color, 
         entry=entry) #comment=comment)
 

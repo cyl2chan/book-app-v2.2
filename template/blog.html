@@ -136,9 +136,16 @@
                         
                         <div class="reaction">
                             <a class="like" data-entry-id="{{entry_obj.entry_id}}">
+                            
+                                {% if entry_likes[entry_obj.entry_id]  %}
+                                <img class="like-icon" src="../static/icons/thumb-up-outline.svg"
+                                style="filter:brightness(0) saturate(100%) invert(8%) sepia(100%) saturate(7470%) hue-rotate(248deg) brightness(96%) contrast(142%)">
+                                <h3 class="like-text" style="color:rgb(0, 0, 255)">Like</h3>
+                                {% else %}
                                 <img class="like-icon" src="../static/icons/thumb-up-outline.svg">
-                                <h3 class="like-text" style="color:'{{entry_obj.likes.like_text_color}}'">Like</h3>
-
+                                <h3 class="like-text" style="filter:brightness(0) saturate(100%) invert(52%) sepia(21%) saturate(7%) hue-rotate(26deg) brightness(93%) contrast(90%);">Like</h3>
+                                {% endif %}
+                            
                             </a>
                             
                             <div class="comment">
