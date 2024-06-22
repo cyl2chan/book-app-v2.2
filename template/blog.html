@@ -142,8 +142,9 @@
                                 style="filter:brightness(0) saturate(100%) invert(8%) sepia(100%) saturate(7470%) hue-rotate(248deg) brightness(96%) contrast(142%)">
                                 <h3 class="like-text" style="color:rgb(0, 0, 255)">Like</h3>
                                 {% else %}
-                                <img class="like-icon" src="../static/icons/thumb-up-outline.svg">
-                                <h3 class="like-text" style="filter:brightness(0) saturate(100%) invert(52%) sepia(21%) saturate(7%) hue-rotate(26deg) brightness(93%) contrast(90%);">Like</h3>
+                                <img class="like-icon" src="../static/icons/thumb-up-outline.svg"
+                                style="filter:brightness(0) saturate(100%) invert(52%) sepia(21%) saturate(7%) hue-rotate(26deg) brightness(93%) contrast(90%)">
+                                <h3 class="like-text" style="color:rgb(128, 128, 128)">Like</h3>
                                 {% endif %}
                             
                             </a>
@@ -378,7 +379,6 @@
                         data: {
                             ent_id: entry_id,
                             'lik_id': like_id,
-                            'lik_text_color': "rgb(0, 0, 255)" //blue
                         },
                         success: function(response) {
                             //if like text is blue, make "like" text and icon blue
