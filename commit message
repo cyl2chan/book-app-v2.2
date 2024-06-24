@@ -295,6 +295,11 @@ Jun 22, 2024
 problem solved: like button appear to be blue when entry has like in the DB, and grey if entry doesn't have like
 
 
+Jun 24, 2024
+
+V plan out data schema in in MongoDB
+next: reorganise data schema of entries, comment and likes
+
 
 
 
