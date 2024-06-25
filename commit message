@@ -301,8 +301,19 @@ V plan out data schema in in MongoDB
 next: reorganise data schema of entries, comment and likes
 
 
+Jun 25, 2024 
 
+changing code to change data schema of comments in MongoDB
+- change class model of entry and comment
+- change def list_entries()
+- change {} in Blog HTML 
+    remove <!--{% for comment in entry_comments[entry_obj.entry_id] %}--> and {% endfor %}
+        (after <div class="comment-list comment-list{{entry_obj.entry_id}}">)
 
+last error:
+  File "/home/torontomet/book-app/book-app-v2.2/entryMDB.py", line 312, in add_comment
+    new_comment.save()
+AttributeError: 'Comment' object has no attribute 'save'
 
 
 
