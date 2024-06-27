@@ -309,11 +309,43 @@ changing code to change data schema of comments in MongoDB
 - change {} in Blog HTML 
     remove <!--{% for comment in entry_comments[entry_obj.entry_id] %}--> and {% endfor %}
         (after <div class="comment-list comment-list{{entry_obj.entry_id}}">)
+    add {% for comment in entry_obj.comments %}
+
 
 last error:
   File "/home/torontomet/book-app/book-app-v2.2/entryMDB.py", line 312, in add_comment
     new_comment.save()
 AttributeError: 'Comment' object has no attribute 'save'
+
+- not displaying comment yet 
+
+V problem solved: manage to add comment immediately and into database
+
+next problem: delete comment
+
+
+Jun 26, 2024
+
+working on deleting comment 
+
+
+Jun 27, 2024 
+
+problem solved: manage to establish new schema for comments inside entries
+next problem: establish new schema for likes inside entries
+    V modify like model
+    V change def list_entries()
+    V change def like()
+    V change {} in Blog HTML 
+
+    replace {% if entry_likes[entry_obj.entry_id]  %} 
+        with 
+        after 
+        <a class="like" data-entry-id="{{entry_obj.entry_id}}">
+
+    V like is recorded in  database
+
+
 
 
 

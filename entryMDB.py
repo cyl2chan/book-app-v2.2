@@ -123,6 +123,20 @@ def unauthorized_handler():
     #return redirect(url_for('login')) 
 
 
+#data schema with comment inside ENtry Collection
+#class Comment(db.Document):
+class Comment(db.EmbeddedDocument):
+    comment_id = db.IntField()
+    #com_author_id = db.IntField()
+    entry_id = db.IntField()
+    comment_content = db.StringField()
+    comment_date = db.StringField()
+    
+#comment section
+class Like(db.EmbeddedDocument):
+    like_id = db.IntField()
+    #like_author_id = db.IntField()
+    entry_id = db.IntField()
 
 #Blog Page
 class Entry(db.Document):
@@ -130,11 +144,27 @@ class Entry(db.Document):
     book_title = db.StringField()
     date = db.StringField()
     content = db.StringField()
-    comments = db.ListField(db.ReferenceField('Comment'))
-    likes = db.ListField(db.ReferenceField('Like'))
-    #comments = db.relationship('Comment', backref='entry', lazy='dynamic')
+
+    comments = db.ListField(db.EmbeddedDocumentField('Comment')) #ensure to change Class Comment
+    #comments = db.ListField(db.ReferenceField('Comment'))
+    #likes = db.ListField(db.ReferenceField('Like'))
+    likes = db.ListField(db.EmbeddedDocumentField('Like'))
+    
 
     meta = {'collection' : 'Entry', 'allow_inheritance' : False}
+"""
+#Blog Page
+class Entry(db.Document):
+    entry_id = db.IntField()
+    book_title = db.StringField()
+    date = db.StringField()
+    content = db.StringField()
+
+    comments = db.ListField(db.ReferenceField('Comment'))
+    likes = db.ListField(db.ReferenceField('Like'))
+    
+    meta = {'collection' : 'Entry', 'allow_inheritance' : False}
+"""
 
 @app.route('/add', methods=['GET', 'POST'])
 def add_entry():
@@ -223,6 +253,9 @@ def delete_entry():
 
 
 #comment section
+
+"""
+#data schema with a separated comment collection
 class Comment(db.Document):
     comment_id = db.IntField()
     #author_id = db.IntField()
@@ -231,6 +264,7 @@ class Comment(db.Document):
     comment_date = db.StringField()
     
     meta = {'collection' : 'Comment', 'allow_inheritance' : False}
+"""
 
 
 @app.route('/<ent_id>/add-comment', methods=['GET', 'POST'])
@@ -242,7 +276,6 @@ def add_comment(ent_id):
 
     comt_id = request.form.get('com_id')
     print('comment ID:', comt_id)
-    #com_id = random.randint(0, 10000)
 
     comment_content = request.form['comment_content']
     print("comment content:", comment_content) 
@@ -250,9 +283,10 @@ def add_comment(ent_id):
     if not comment_content:
         print('Comment cannot be empty.')
     else:
-        new_comment = Comment(comment_id=comt_id, entry_id =ent_id, #author_id=author_id
+        comment = Comment(comment_id=comt_id, entry_id =ent_id, #author_id=author_id
             comment_content=comment_content) #comment_date=comment_date
-        new_comment.save()
+        entry.comments.append(comment)
+        entry.save()
 
     return redirect('/blog')
     #return render_template('blog.html', entry_list=list(entries), comment_list=list(comments), entry=entry, comment=comment)
@@ -261,20 +295,32 @@ def add_comment(ent_id):
 @app.route('/delete-comment/<com_id>', methods=['GET', 'POST'])
 @login_required
 def delete_comment(com_id):
+    """
     comments = Comment.objects(comment_id=com_id)
     comment = comments.first()
+    """
+    entry_id = request.form.get('ent_id')
+    #print("delete comment entry ID", ent_id)
+    entries = Entry.objects()
+    entry = entries.first()
+    print("delete comment entry ID", entry_id)
+    comment = Comment(comment_id=com_id)#, entry_id =ent_id, #author_id=author_id
+        #comment_content=comment_content) #comment_date=comment_date
 
     print("/delete-comment/<comment_id>:", com_id)
     if not comment:
         return ("/delete-comment/<comment_id>: Comment id not found!")
     else: 
-        comment.delete()
+        #comment.delete()
+        #entry.comments.delete(comment)
+        Entry.objects(entry_id=entry_id).update(pull__comments={'comment_id': com_id})
+        #entry.save()
 
     return redirect('/blog')
 
 
 
-
+"""
 #comment section
 class Like(db.Document):
     like_id = db.IntField()
@@ -282,6 +328,7 @@ class Like(db.Document):
     entry_id = db.IntField()
     
     meta = {'collection' : 'Like', 'allow_inheritance' : False}
+"""
 
 @app.route('/<ent_id>/like', methods=['GET', 'POST'])
 @login_required
@@ -293,41 +340,49 @@ def like(ent_id):
     lik_id = request.form.get('lik_id') #get like ID from ajax
     print('like ID:', lik_id)
 
-    #likes = Like.objects(like_id=lik_id)
-    likes = Like.objects(entry_id=ent_id)
-    like = likes.first()
-    
-    if not like: #if there's no like of the same entry ID, generate new like w/ like ID
-        new_like = Like(like_id=lik_id, entry_id =ent_id) #author_id=author_id
-        new_like.save()
+    like = Like(entry_id=ent_id) #author_id=author_id
+
+    if not like in entry.likes: #if there's no like of the same entry ID, generate new like w/ like ID
+        like2 = Like(like_id=lik_id, entry_id=ent_id)
+        entry.likes.append(like2)
+        entry.save()
+        """
+        comment = Comment(comment_id=comt_id, entry_id =ent_id, #author_id=author_id
+            comment_content=comment_content) #comment_date=comment_date
+        entry.comments.append(comment)
+        entry.save()
+        """
     else: #if entry w/ same entry ID already liked, find the like ID and delete it
+        """
         like2 = Like.objects(entry_id=ent_id)
         like2.delete()
+        """
+        Entry.objects(entry_id=ent_id).update(pull__likes={'entry_id': ent_id})
 
     return redirect('/blog')
 
 
+#data schema with comments inside Entry collection in MongoDB
 @app.route('/blog', methods=['GET'])
 @login_required
 def list_entries():
     entries = Entry.objects()
     entry = entries.first()
-    likes = Like.objects(entry_id=entry.entry_id)
-    like = likes.first()
 
-    entry_comments = {}
+    """
+    #entry_comments = {}
     entry_likes = {}
 
     for entry in entries:
-        comments = Comment.objects(entry_id=entry.entry_id)
-        entry_comments[entry.entry_id] = comments
+        entry_comments = Entry.comments 
 
-        likes = Like.objects(entry_id=entry.entry_id)
-        like = likes.first()
-        entry_likes[entry.entry_id] = likes
+        #comments = Comment.objects(entry_id=entry.entry_id)
+        #entry_comments[entry.entry_id] = comments
+    """
+    return render_template('blog.html', entry_list=list(entries),
+        entry=entry)
 
-    return render_template('blog.html', entry_list=list(entries), entry_comments=entry_comments, 
-        entry_likes=entry_likes, entry=entry)
+
 
 
 #import feedparser

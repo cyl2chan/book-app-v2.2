@@ -137,7 +137,7 @@
                         <div class="reaction">
                             <a class="like" data-entry-id="{{entry_obj.entry_id}}">
                             
-                                {% if entry_likes[entry_obj.entry_id]  %}
+                                {% if entry_obj.likes  %}
                                 <img class="like-icon" src="../static/icons/thumb-up-outline.svg"
                                 style="filter:brightness(0) saturate(100%) invert(8%) sepia(100%) saturate(7470%) hue-rotate(248deg) brightness(96%) contrast(142%)">
                                 <h3 class="like-text" style="color:rgb(0, 0, 255)">Like</h3>
@@ -157,7 +157,8 @@
                         
 
                         <div class="comment-list comment-list{{entry_obj.entry_id}}">
-                            {% for comment in entry_comments[entry_obj.entry_id] %}
+                            
+                            {% for comment in entry_obj.comments %}
                             <div class="comment-post comment-post{{entry_obj.entry_id}} comment-commentID{{comment.comment_id}}">
                                 <div class="comment-left-area">
                                     <img src="../static/icons/leon.png">
@@ -172,7 +173,7 @@
                                     </p>
                                 </div>
                                 <a> <!--< href="delete-comment/{{comment.comment_id}}"> -->
-                                    <h3 id="X" class="del-comment del-comment{{comment.comment_id}}" data-comment-id="{{comment.comment_id}}">
+                                    <h3 id="X" class="del-comment del-comment{{comment.comment_id}}" data-entry-id="{{entry_obj.entry_id}}" data-comment-id="{{comment.comment_id}}">
                                         X
                                     </h3>
                                 </a>
@@ -305,7 +306,7 @@
                         type: 'POST',
                         url: '/' + entry_id +'/add-comment',
                         data: {
-                            ent_id: entry_id,
+                            'ent_id': entry_id,
                             'com_id': comment_id,
                             comment_content: commentContent,
                         },
@@ -347,6 +348,8 @@
 
             $(document).on("click", ".del-comment", function(event) {
                 var comment_id = $(this).data("comment-id"); 
+                var entry_id = $(this).data("entry-id"); 
+                console.log(entry_id); 
                 
                 console.log("comment ID:" + comment_id);
                 var comment_comment_id = ".comment-commentID" + comment_id;
@@ -355,7 +358,8 @@
                         type: 'POST', 
                         url: '/delete-comment/' + comment_id,
                         data: {
-                            com_id: comment_id,
+                            ent_id: entry_id,
+                            com_id: comment_id
                         },
                         success: function(response) {
                                 $(comment_comment_id).remove();
