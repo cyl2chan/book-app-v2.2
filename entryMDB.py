@@ -122,6 +122,18 @@ def unauthorized_handler():
     #flash("You need to login first!")
     #return redirect(url_for('login')) 
 
+class User2(db.Document):
+    #photo = 
+    user_name = db.StringField()
+    user_id = db.IntField()
+    name = db.StringField()
+    no_of_followers = db.IntField()
+    no_of_followings = db.IntField()
+    followers_list = db.ListField(db.IntField())#list of users Ids
+    followings_list = db.ListField(db.IntField()) #list of users Ids
+    published_entries = db.ListField(db.IntField()) #list of entries Ids reference from entries collections
+
+
 
 #data schema with comment inside ENtry Collection
 #class Comment(db.Document):

@@ -345,7 +345,12 @@ next problem: establish new schema for likes inside entries
 
     V like is recorded in  database
 
+Problems solved: problems to change data schema all done!!
 
 
+Jul 1, 2024
 
-
+next: create profile for other users
+- create User2 model
+- create a User2 Collection
+- Create a user2 doc with Rocky Davis

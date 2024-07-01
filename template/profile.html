@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../static/style.css">
+    <link rel="stylesheet" href="../static/blog.css">
+    <link rel="icon" type="image/x-icon" href="../../icons/post.svg">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <title>Blog</title>
+</head>
+<body>
+
+    <div id="menu">
+        <div class="dashboard">
+            <img src="{{ url_for('static', filename='../static/icons/view-dashboard.svg') }}">
+            <h1>Dashbboard</h1>
+        </div>
+        <div class="blank"></div>
+        <a class="menuItem" href="/library">
+            <img src="../static/icons/book-open-page-variant.svg">
+            <h2>Library</h2>
+        </a>
+        <a class="menuItem challenge" href="/reading_challenge">
+            <img src="../static/icons/stairs-up.svg">
+            <h2>Challenge</h2>
+        </a>
+        <a class="menuItem blog" href="/blog">
+            <img src="../static/icons/post.svg">
+            <h2>Blog</h2>
+        </a>
+        <a class="menuItem" href="/recommend">
+            <img src="../static/icons/newspaper.svg">
+            <h2>Recommend</h2>
+        </a>
+    </div>
+    
+    <div id="body-right">
+        <div id="header">
+            <div id="top">
+                <div id="topLeft">
+                    <img src="../static/icons/magnify.svg" id="seachIcon">
+                    <input type="text" id="searchBar">
+                </div>
+                <div id="topRight">
+                    <img src="../static/icons/bell-ring-outline.svg" id="bellRing">
+                    <img src="../static/icons/leon.png">
+                    <div class="dropdown">
+                        <input type="checkbox" id="dropdown"/>
+                            <label for="dropdown" class="dropdown-btn">
+                                <span><p>Leon Chan</p></span>
+                                <span class="arrow"></span>
+                            </label>
+                            <ul class="dropdown-content" role="menu">
+                                <li><a href="/logout">Logout</a></li>
+                            </ul>
+                    </div>
+                </div>
+            </div>
+            <div id="tab">
+                <img src="../static/icons/leon.png">
+                <div id="greetings">
+                    <p id="hi">&nbsp; Hi there,</p>
+                    <p id="leon-chan">Rocky Davis (@rockyD)</p>
+                </div>
+                <div id="round-btn-gp">
+
+                    <!--<button class="round-btn">Share</button>-->
+                </div>
+            </div>
+        </div>   
+        <div id="content">
+            <div id="content-left">
+                <div class="container">
+
+                    <h1></h1>
+                      
+                    <div class="empty"></div>
+
+                    
+                    <!--<div class="entire-entry">-->
+                        {% for entry_obj in entry_list %}
+                        <div class="entry">
+                            <div class="entry-icons">
+                                
+                                <a href="update-modal/{{entry_obj.entry_id}}">
+                                <!--<a onclick="edit_entry()"> -->
+                                    <img src="../static/icons/pencil.svg">
+                                </a>
+                                
+                                <a href="delete/{{entry_obj.entry_id}}"><h3 id="X">X</h3></a>
+                            </div>
+                            <div class="entry-header">
+                                <h3>Review: {{ entry_obj.book_title }}</h3>
+                                <p class='date'>{{ entry_obj.date }}</p>
+                                <input disabled class="entry_id" value="{{entry_obj.entry_id}}">
+                            </div>
+                            <p class="entry-content">{{ entry_obj.content }}</p>
+                            <!--<p class="entry-id">{{ entry_obj.entry_id }}</p> -->
+                        </div>
+                        
+                        <div class="reaction">
+                            <a class="like" data-entry-id="{{entry_obj.entry_id}}">
+                            
+                                {% if entry_obj.likes  %}
+                                <img class="like-icon" src="../static/icons/thumb-up-outline.svg"
+                                style="filter:brightness(0) saturate(100%) invert(8%) sepia(100%) saturate(7470%) hue-rotate(248deg) brightness(96%) contrast(142%)">
+                                <h3 class="like-text" style="color:rgb(0, 0, 255)">Like</h3>
+                                {% else %}
+                                <img class="like-icon" src="../static/icons/thumb-up-outline.svg"
+                                style="filter:brightness(0) saturate(100%) invert(52%) sepia(21%) saturate(7%) hue-rotate(26deg) brightness(93%) contrast(90%)">
+                                <h3 class="like-text" style="color:rgb(128, 128, 128)">Like</h3>
+                                {% endif %}
+                            
+                            </a>
+                            
+                            <div class="comment">
+                                <img src="../static/icons/comment-outline.svg">
+                                <h3>Comment</h3>
+                            </div>
+                        </div>
+                        
+
+                        <div class="comment-list comment-list{{entry_obj.entry_id}}">
+                            
+                            {% for comment in entry_obj.comments %}
+                            <div class="comment-post comment-post{{entry_obj.entry_id}} comment-commentID{{comment.comment_id}}">
+                                <div class="comment-left-area">
+                                    <img src="../static/icons/leon.png">
+                                </div>
+                                <div class="comment-bubble">
+                                    <h3>Rocky Davis</h3>
+                                    <p class="comment-text comment-text{{entry_obj.entry_id}}">
+                                        {{ comment.comment_content }}
+                                        <!--Nice post! I love this book too. It's a life-transforming book! Best of the best!
+                                        Nice post! I love this book too. It's a life-transforming book! Best of the best!
+                                        Nice post! I love this book too. It's a life-transforming book! Best of the best! -->
+                                    </p>
+                                </div>
+                                <a> <!--< href="delete-comment/{{comment.comment_id}}"> -->
+                                    <h3 id="X" class="del-comment del-comment{{comment.comment_id}}" data-entry-id="{{entry_obj.entry_id}}" data-comment-id="{{comment.comment_id}}">
+                                        X
+                                    </h3>
+                                </a>
+                                
+                            </div>
+                            {% endfor %}
+                        </div>
+
+                        
+                        <form class="comment-form comment-form{{entry_obj.entry_id}}"> <!-- action='{{ entry_obj.entry_id }}/add-comment' method='POST'> -->
+                            <input type="text" id="input-comment-content{{entry_obj.entry_id}}" name='comment-content' placeholder="Write a comment...">   
+                            <button  type='submit' id='comment-btn' data-entry-id="{{entry_obj.entry_id}}">
+                                <img src="../static/icons/send.svg">
+                            </button>
+                            
+                        </form>
+
+                        {% endfor %}
+                    <!--</div>-->
+
+                    
+
+                </div>
+            </div>
+
+            <div id="content-right">
+                
+                    <div id="announcements" class="hide-show-right">
+                        <h2>Following</h2>
+                        <div id="ann-grid">
+                            <div class="ann-item">
+                                <h2>Site Maintenance</h2>
+                                <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor...</p>
+                            </div>
+                            <div class="ann-item">
+                                <h2>Canada Day</h2>
+                                <p>Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes...</p>
+                            </div>
+                            <div class="ann-item">
+                                <h2>Updated Privacy Policy</h2>
+                                <p>nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem...</p>
+                            </div>
+                        </div>
+                    </div>
+                
+                    <div id="trending" class="hide-show-right">
+                        <h2 id="trending-text">Followers</h2>
+                        <div id="t-grid">
+                            <div class="t-item">
+                                <img src="../static/icons/dj.png">
+                                <div>
+                                    <h4 class="t-item-user">@djbrian</h4>
+                                    <p class="t-item-description">Music Project</p>
+                                </div>
+                            </div>
+                            <div class="t-item">
+                                <img  src="../static/icons/frontend.png">
+                                <div>
+                                    <h4 class="t-item-user">@Alex</h4>
+                                    <p class="t-item-description">Javascript Mentor</p>
+                                </div>
+                            </div>
+                            <div class="t-item">
+                                <img  src="../static/icons/backend.png">
+                                <div>
+                                    <h4 class="t-item-user">@christopher</h4>
+                                    <p class="t-item-description">Backend Expert</p>
+                                </div>
+                            </div>
+                            <div class="t-item">
+                                <img  src="../static/icons/messi.png">
+                                <div>
+                                    <h4 class="t-item-user">@messi</h4>
+                                    <p class="t-item-description">GOAT builder</p>
+                                </div>
+                            </div>
+                            
+                        </div>
+                            
+                    </div>
+                
+            </div>
+        </div>
+        
+        
+    
+    </div>
+
+    <script>
+
+        $(document).ready(function() {
+            //add comment
+            //get access to entry_id stored in add comment button
+            $(document).on("click", "#comment-btn", function(event) {
+                var entry_id = $(this).data("entry-id"); 
+                console.log(entry_id); 
+                var objEntry_id = '.comment-form' + entry_id; 
+                var objInput_comment_content = 'input-comment-content' + entry_id; 
+                var objcomment_post = "comment-post" + entry_id;
+                var objcomment_text = "comment-text" + entry_id; 
+                var comment_list_EntryId= "comment-list" + entry_id;
+
+                //for delete comment function of newly added comments b4 reloading page
+
+                var comment_id = $().data("comment-id"); //need to add hidden input field for comment id
+                var com_comId_num = "comment-commentID" + comment_id;
+                var comment_id = Math.floor((Math.random() * 10000) + 1);
+                console.log("comment ID:" + comment_id);
+                
+
+                console.log("comment-list:" + comment_list_EntryId); 
+                console.log(objEntry_id); 
+
+                    event.preventDefault();
+                    console.log("form submitted");
+                    console.log("on submit:" + objEntry_id);
+
+                    let inputComment = document.getElementById(objInput_comment_content);
+                    var commentContent = inputComment.value;
+
+                    console.log(commentContent); 
+                    console.log(objcomment_text);
+                    //console.log("entry_id of entry:" + entry_id);
+
+                    $.ajax({
+                        type: 'POST',
+                        url: '/' + entry_id +'/add-comment',
+                        data: {
+                            'ent_id': entry_id,
+                            'com_id': comment_id,
+                            comment_content: commentContent,
+                        },
+                        success: function() {
+                                var comment_list = document.getElementsByClassName(comment_list_EntryId)[0];
+                                
+                                input_comment_content_entId = "input-comment-content" + entry_id;
+                                var comment_input = document.getElementById(input_comment_content_entId);
+
+                                comment_list.innerHTML += 
+                                    
+                                    `<div class="comment-post comment-commentID`
+                                    + comment_id
+                                    +
+                                    `">
+                                        <div class="comment-left-area">
+                                            <img src="../static/icons/leon.png">
+                                        </div>
+                                        <div class="comment-bubble">
+                                            <h3>Leon Chan</h3>
+                                            <p class="comment-text">`
+                                    + commentContent +
+                                            `</p>
+                                        </div>
+                                        
+                                        <h3 id="X" class="del-comment" data-comment-id=`
+                                    + comment_id
+                                    +
+                                        `>X</h3>
+                                        
+                                    </div>`;
+
+                                comment_input.value = ""; //clear input field after submitting comment
+
+                        }
+                    });
+                //});
+            });
+
+            $(document).on("click", ".del-comment", function(event) {
+                var comment_id = $(this).data("comment-id"); 
+                var entry_id = $(this).data("entry-id"); 
+                console.log(entry_id); 
+                
+                console.log("comment ID:" + comment_id);
+                var comment_comment_id = ".comment-commentID" + comment_id;
+
+                $.ajax({
+                        type: 'POST', 
+                        url: '/delete-comment/' + comment_id,
+                        data: {
+                            ent_id: entry_id,
+                            com_id: comment_id
+                        },
+                        success: function(response) {
+                                $(comment_comment_id).remove();
+
+                        }
+                });
+
+
+            });
+            
+            
+            $(document).on("click", ".like", function(event) {
+                var entry_id = $(this).data("entry-id");
+                var like_text = $(this).find(".like-text");
+                var like_icon = $(this).find(".like-icon");
+                console.log("entry ID of like button: " + entry_id); 
+                var like_id = Math.floor((Math.random() * 10000) + 1);
+                $.ajax({
+                        type: 'POST', 
+                        url: '/' + entry_id + '/like',
+                        data: {
+                            ent_id: entry_id,
+                            'lik_id': like_id,
+                        },
+                        success: function(response) {
+                            //if like text is blue, make "like" text and icon blue
+                            if (like_text.css("color") == "rgb(0, 0, 255)") {
+                                console.log("like: blue --> grey");
+                                like_text.css("color", "grey");
+                                //like_icon.css("color", "grey)");
+                                like_icon.css("filter", "brightness(0) saturate(100%) invert(52%) sepia(21%) saturate(7%) hue-rotate(26deg) brightness(93%) contrast(90%)");
+                        
+                            } else {
+                                //if like text is not blue, make "like" text and icon blue
+                                console.log("like: grey --> blue");
+                                like_text.css("color", "blue");
+                                //like_icon.css("color", "blue)");
+                                like_icon.css("filter", "brightness(0) saturate(100%) invert(8%) sepia(100%) saturate(7470%) hue-rotate(248deg) brightness(96%) contrast(142%)");
+                                
+                            }
+
+                        }
+                });
+
+            })
+            
+            
+
+        });
+        
+
+
+
+        //const modal = document.querySelector('.modal-update');
+        //const cancel_btn = modal.querySelector('#cancel-btn');
+
+
+    </script>
+</body>
+</html>
