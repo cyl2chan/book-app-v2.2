@@ -6,9 +6,9 @@ steps:
 3. Enter valid password
 4. Click Login button
 
-Expected result: User directed to Library of the app
-Actual result: Login successful
-Pass/Fail: Pass
+- Expected result: User directed to Library of the app
+- Actual result: Login successful
+- Pass/Fail: Pass
 ------------------------------------------------------------
 
 Test case #2: Login with incorrect email and incorrect password
@@ -19,9 +19,9 @@ steps:
 3. Enter invalid password 
 4. Click login button
 
-Expected result: User is shown message "Incorrect login email or password" 
-Actual result: User is shown message "Incorrect login email or password" 
-Pass/Fail: Pass
+- Expected result: User is shown message "Incorrect login email or password" 
+- Actual result: User is shown message "Incorrect login email or password" 
+- Pass/Fail: Pass
 ------------------------------------------------------------
 
 Test case #3: LOgin with correct email but incorrect password
@@ -33,9 +33,9 @@ Steps
 4. CLick login button
 
 
-Expected result: User is shown message "Incorrect login email or password" 
-Actual result: User is shown message "Incorrect login email or password" 
-Pass/Fail: Pass
+- Expected result: User is shown message "Incorrect login email or password" 
+- Actual result: User is shown message "Incorrect login email or password" 
+- Pass/Fail: Pass
 ------------------------------------------------------------
 
 Test case #4: Login with incorrect email but correct password
@@ -47,6 +47,6 @@ Steps
 4. CLick login button
 
 
-Expected result: User is shown message "Incorrect login email or password" 
-Actual result: User is shown message "Incorrect login email or password" 
-Pass/Fail: Pass
+- Expected result: User is shown message "Incorrect login email or password" 
+- Actual result: User is shown message "Incorrect login email or password" 
+- Pass/Fail: Pass
