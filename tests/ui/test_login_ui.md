@@ -24,7 +24,7 @@ steps:
 - Pass/Fail: Pass
 ------------------------------------------------------------
 
-Test case #3: LOgin with correct email but incorrect password
+Test case #3: Login with correct email but incorrect password
 
 Steps
 1. Navigate to login page
