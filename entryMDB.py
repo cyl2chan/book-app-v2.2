@@ -100,7 +100,7 @@ def login():
         login_user(user)
         return redirect(url_for('protected'))
 
-    return 'Incorrect login'
+    return 'Incorrect login email or password'
 
 # Protected route hence user must be logged in to access it. 
 @app.route('/protected')
