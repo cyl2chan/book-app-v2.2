@@ -1,0 +1,53 @@
+This document is for test cases for the Book Challenge page.
+
+Test case #1: Function of setting a number of books the user want to read
+
+Steps:
+1) Navigate to the Library page, ensure one book is ticked "Read?"
+2) Add a number 9 to the blank box in the sentence "I want to read __ books"
+3) Click the "Update" button
+
+- Expected result: 
+    - In the sentence "You have read __ of __ books" where both "__" contain a number, 
+    the first number should be 1; the second number should be 9.
+    - "11%" should appear at the end of progress bar
+    - 11% of progress bar should be in green color, while the rest of the bar is white
+- Actual result: Same as expected result.
+- Pass/Fail: Pass
+
+---------------------------------------------------
+
+Test case #2: Setting a massive number as number of books the user want to read
+
+Steps:
+1) Add number 10000000000 to the blank box in the sentence "I want to read __ books"
+2) Click the "Update" button
+
+- Expected result: Message "Enter number between 1 and 100" should appear.
+- Actual result: In the sentence "You have read __ of __ books" where both "__" contain a number, 
+    the second number is 10000000000.
+- Pass/Fail: Fail
+
+---------------------------------------------------
+
+Test case #3: Setting 0 as number of books the user want to read
+
+Steps:
+1) Add number 0 to the blank box in the sentence "I want to read __ books"
+2) Click the "Update" button
+
+- Expected result: Message "Enter number between 1 and 100" should appear.
+- Actual result: No response.
+- Pass/Fail: Fail
+
+---------------------------------------------------
+
+Test case #4: Blank as the number of books the user want to read
+
+Steps:
+1) Ensure box in the sentence "I want to read __ books" is blank
+2) Click the "Update" button
+
+- Expected result: No response.
+- Actual result: No response.
+- Pass/Fail: Pass

@@ -1,10 +1,17 @@
 # book-app-v2
 
-updates: In the blog page, users now can add and delete comment under each entry. 
-
-__Language and Skills__: Python, Javascript, CSS, HTML, Flask, MongoDB
+updates (Mar 17, 2026): Under folder /tests, there are test cases for __Quality Assurance__ purposes. 
 
 Click the link under "About" on the right hand side of the screen to see my app.
+
+__Skills__: Software Development, Quality Assurance testing
+
+__Testing__: 
+- Writing manual test cases for core features
+- Validating user workflow and edge cases
+- Will use Postman for API testing and Slenium and Pytest for automation
+
+__Tech Stack__: Python, Javascript, CSS, HTML, Flask, MongoDB
 
 __Problem__:
 According to the Bureau of Labour Statistics, the average American spent 23 minutes per day reading in 2004, but declined to just 16 minutes in 2019. The main reasons is that there is an increase use of technology and electronic devices, including social media and video games. 

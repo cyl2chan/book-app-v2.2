@@ -1,4 +1,4 @@
-This document are for test cases for the Library page.
+This document is for test cases for the Library page.
 
 Test case #1: Add book function
 
@@ -48,7 +48,7 @@ Steps:
 - Pass/Fail: Pass
 ------------------------------------------------------------
 
-Test case #4: untick book function
+Test case #5: untick book function
 
 Steps:
 1) Click on a checkbox beside "Read?" which is already ticked to untick the checkbox
