@@ -56,3 +56,7 @@ Steps:
 - Expected result: Left border change from green to red.
 - Actual result: Left border change from green to red.
 - Pass/Fail: Pass
+
+------------------------------------------------------------
+
+Test case #6: 
