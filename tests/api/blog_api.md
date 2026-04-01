@@ -75,4 +75,20 @@
 **Tool:** Postman
 
 ### Steps;
+1. Select POST as method and /4637/add-comment route as URL
+2. Under Body, select x-www-form-urlencoded
+3. Add "4637" as "entry_id", "100" as "com_id", and "luv it!" as "comment_content"
+4. Under Script, select "Status code: code is 200" as snippet
+
+### Expected results:
+- Comment with content "luv it!" is added under the entry with entry_id 4637
+- Status code: 200 ok
+- Body contains comment content
+- Dody contains comment ID
+
+### Actual Results: 
+- same as expected results
+
+### Status: 
+- Pass
 
