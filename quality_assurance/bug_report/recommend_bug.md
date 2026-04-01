@@ -1,6 +1,6 @@
 ### Bug report of Recommend page
 
-## Link of title of article is not the page of the article
+## BUG_RECOMMEND_001 = Link of title of article is not the page of the article
 
 **description:** We need to make the link of the article become the page of the article in the Book Browse website instead of the page of the Recommend page of the Book app
 
