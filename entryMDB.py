@@ -261,9 +261,6 @@ def delete_entry():
 
 
 
-
-
-
 #comment section
 
 """
