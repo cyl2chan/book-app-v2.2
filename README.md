@@ -1,6 +1,8 @@
 # book-app-v2
 
-updates (Mar 17, 2026): Under folder /tests, there are test cases for __Quality Assurance__ purposes. 
+In this project, I first utilise my software development skills to build the features; currently, I am applying Quality Assurance skills to test features. My QA files are under the directory __quality_assurance__. 
+
+updates (Apr 11, 2026): Currently working on automation testing with Selenium and Pytest, which is under __/quality_assurance/automation/__.
 
 Click the link under "About" on the right hand side of the screen to see my app.
 
@@ -9,7 +11,8 @@ __Skills__: Software Development, Quality Assurance testing
 __Testing__: 
 - Writing manual test cases for core features
 - Validating user workflow and edge cases
-- Will use Postman for API testing and Slenium and Pytest for automation
+- __Postman__ for API testing
+- Currently working on automation testing with __Selenium__ and __Pytest__
 
 __Tech Stack__: Python, Javascript, CSS, HTML, Flask, MongoDB
 
