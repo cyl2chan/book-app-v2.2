@@ -2,7 +2,7 @@
 These tests cover the login of the Book App.
 """
 
-def test_login_credentials();
+def test_login_credentials(browser):
 
     # Given the login page is displayed
     #TODO
