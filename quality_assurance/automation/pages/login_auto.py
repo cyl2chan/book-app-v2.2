@@ -2,7 +2,7 @@
 This module contains the page object for the login page.
 """
 
-class login_page_auto:
+class LoginPageAuto:
 
     def __init__(self, browser):
         self.broswer = browser

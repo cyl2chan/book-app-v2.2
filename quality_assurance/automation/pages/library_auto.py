@@ -2,9 +2,11 @@
 This module contains the page object for the library page.
 """
 
-class library_page_auto:
+class LibraryPageAuto:
 
     def __init__(self, browser):
         self.browser = browser
 
-    
+    def load(self):
+        #TODO
+        pass
