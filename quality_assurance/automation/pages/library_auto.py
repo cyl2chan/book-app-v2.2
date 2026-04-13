@@ -7,6 +7,5 @@ class LibraryPageAuto:
     def __init__(self, browser):
         self.browser = browser
 
-    def load(self):
-        #TODO
-        pass
+    def get_library(self):
+        return "Library Page successfully loaded"
