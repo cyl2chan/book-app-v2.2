@@ -2,8 +2,8 @@
 These tests cover the login of the Book App.
 """
 
-from pages.login_auto import LoginPageAuto
-from pages.library_auto import LibraryPageAuto
+from quality_assurance.automation.pages.login_auto import LoginPageAuto
+from quality_assurance.automation.pages.library_auto import LibraryPageAuto
 
 def test_login_credentials(browser):
     login_page = LoginPageAuto(browser)
