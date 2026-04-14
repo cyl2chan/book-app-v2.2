@@ -2,6 +2,7 @@
 This module contain shared fixtures.
 """
 
+import json
 import pytest
 import selenium.webdriver
 from selenium import webdriver
