@@ -20,6 +20,6 @@ def test_login_credentials(browser):
     # Then the Library page is displayed
     library_page.load()
 
-    # TODO REmove this exception once the test is complete
+    # TODO Remove this exception once the test is complete
     raise Exception("Incomplete Test")
 
